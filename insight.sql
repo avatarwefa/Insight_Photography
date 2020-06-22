@@ -1,0 +1,47 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.2
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th6 09, 2020 lúc 09:24 AM
+-- Phiên bản máy phục vụ: 10.1.34-MariaDB
+-- Phiên bản PHP: 7.2.7
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+07:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Cơ sở dữ liệu: `insight`
+--
+
+-- --------------------------------------------------------
+
+--
+
+--
+
+CREATE TABLE `USER` (
+  `USER_ID` int NOT NULL AUTO_INCREMENT,
+  `USER_NAME` varchar(30) NOT NULL,
+  `PASSWORD` varchar(60) NOT NULL,
+  `GENDER` boolean NOT NULL,
+  `EMAIL` varchar(60) NOT NULL,
+  `FULL_NAME` varchar(60) NOT NULL,
+  `TRIAL_DATE` DATE NOT NULL,
+  `IDGROUP` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`USER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
