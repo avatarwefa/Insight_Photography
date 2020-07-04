@@ -73,7 +73,7 @@
                     </div>
                     <div class="jumbotron">
                         <h1><small>Nơi khơi nguồn cho đam mê</small> 
-						<strong>Nhiếp ảnh</strong></h1>
+                        <strong>Nhiếp ảnh</strong></h1>
                         <p>Đây là nơi bạn có thể biến những khoảnh khắc thành những bước ảnh đắc giá cho hành trình của bạn.</p>
                         <p><a class="btn btn-primary btn-lg" role="button">Tìm hiểu thêm</a> <a target="_blank" href="#Features" class="btn btn-lg btn-danger" role="button">Chúng tôi trên Youtube</a></p>
                     </div>
@@ -193,15 +193,43 @@
         </section>
         
         <section id= "pricing" class="blog wow fadeInUp" data-wow-delay="300ms">
-          
-          
-          
-          
+         
         <div class="background">
-  <div class="container">
+<div class="container">
     <div class="panel pricing-table">
-      
-      <div class="pricing-plan">
+    
+        <?php
+            $connect = mysqli_connect('localhost', 'root', '', 'insight');
+            //Kiểm tra kết nối
+            if (!$connect) {
+                die('kết nối không thành công ' . mysqli_connect_error());
+            }
+            //khởi tạo biến $i để đếm;
+            $i = 1;
+            //câu truy vấn
+            $sql = "SELECT * FROM BUNDLE";
+            //kiểm tra
+            if ($result = mysqli_query($connect, $sql)) {
+                while ($row = mysqli_fetch_array($result)) {
+                    //hiển thị dữ liệu
+                    // echo 'Dữ liệu thứ ' . $i . ' gồm: ' . $row['id'] . '-' . $row['title'] . '-' . $row['content'] . '<br/>';
+                    echo '<div class="pricing-plan">
+                    <img src="https://s22.postimg.cc/8mv5gn7w1/paper-plane.png" alt="" class="pricing-img">
+                    <h2 class="pricing-header">'.$row['BUNDLE_NAME'].'</h2>
+                    <p>'.$row['BUNDLE_DES'].'<p>
+                    <span class="pricing-price">'.$row['BUNDLE_PRICE'].'</span>
+                    <a href="#/" class="pricing-button">Đăng kí</a>
+                  </div>';
+                    //tăng $i lên 1
+                    $i++;
+                }
+            } else
+                //Hiện thông báo khi không thành công
+                echo 'Không thành công. Lỗi' . mysqli_error($connect);
+            //ngắt kết nối
+            mysqli_close($connect);
+        ?>
+      <!-- <div class="pricing-plan">
         <img src="https://s22.postimg.cc/8mv5gn7w1/paper-plane.png" alt="" class="pricing-img">
         <h2 class="pricing-header">CƠ BẢN</h2>
         <ul class="pricing-features">
@@ -232,10 +260,10 @@
         </ul>
         <span class="pricing-price">$400</span>
         <a href="#/" class="pricing-button">DÙNG THỬ</a>
-      </div>
+      </div> -->
       
     </div>
-  </div>
+</div>
 </div>
         </section>
         
@@ -249,41 +277,36 @@
                     <div class="masonry image-gallery">
                         <div class="grid-sizer"></div>
                         <div class="gutter-sizer"></div>
-                        <div class="item item-width2">
-                            <a href="https://unsplash.it/1000/600?image=529">
-                              <img src="https://unsplash.it/600/300?image=529" alt="" />
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="https://unsplash.it/1000/600?image=523">
-                              <img src="https://unsplash.it/320/776?image=523" alt="" />
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="https://unsplash.it/600/1000?image=503">
-                              <img src="https://unsplash.it/500/800?image=503" alt="" />
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="https://unsplash.it/1000/600?image=505">
-                              <img src="https://unsplash.it/400/400?image=505" alt="" />
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="https://unsplash.it/800/800?image=454">
-                              <img src="https://unsplash.it/4403/2476?image=454" alt="" />
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="https://unsplash.it/800/800?image=515">
-                              <img src="https://unsplash.it/585/439?image=515" alt="" />
-                            </a>
-                        </div>
-                        <div class="item item-width2">
-                            <a href="https://unsplash.it/1000/600?image=451">
-                              <img src="https://unsplash.it/600/140?image=451" alt="" />
-                            </a>
-                        </div>
+                        <?php
+                        $connect = mysqli_connect('localhost', 'root', '', 'insight');
+                        //Kiểm tra kết nối
+                        if (!$connect) {
+                            die('kết nối không thành công ' . mysqli_connect_error());
+                        }
+                        //khởi tạo biến $i để đếm;
+                        $i = 1;
+                        //câu truy vấn
+                        $sql = "SELECT * FROM images";
+                        //kiểm tra
+                        if ($result = mysqli_query($connect, $sql)) {
+                            while ($row = mysqli_fetch_array($result)) {
+                                //hiển thị dữ liệu
+                                // echo 'Dữ liệu thứ ' . $i . ' gồm: ' . $row['url'] . '-' . $row['title'] . '-' . $row['content'] . '<br/>';
+                                //tăng $i lên 1
+                                echo'<div class="item item-width2">
+                                <a href=' . $row['url'] . '>
+                                  <img src=' . $row['url'] . ' alt="" />
+                                </a>
+                            </div>';
+
+                                $i++;
+                            }
+                        } else
+                            //Hiện thông báo khi không thành công
+                            echo 'Không thành công. Lỗi' . mysqli_error($connect);
+                        //ngắt kết nối
+                        mysqli_close($connect);
+                        ?>
                     </div>
                 </div>
             </div>
@@ -343,27 +366,109 @@
               </div>
             </div>
             <div class="row contact-details">
-              <div class="col-md-4">
-                <div class="light-box box-hover">
-                  <h3><i class="fa fa-map-marker"></i></h3>
-                  <h2><span>Địa chỉ</span></h2>
-                  <p>Toà C12, 268 Lý Thường Kiệt</p>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="light-box box-hover">
-                <h3><i class="fa fa-mobile"></i></h3>
-                  <h2>
-                  <span>Điện thoại</span></h2>
-                  <p>+84 9 211 3747</p>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="light-box box-hover">
-                <h3><i class="fa fa-paper-plane"></i></h3>
-                  <h2><span>Email</span></h2>
-                  <p><a href="#">Insight@Photography.com</a></p>
-                </div>
+          
+              <?php
+            // khởi tạo kết nối
+            $connect = mysqli_connect('localhost', 'root', '', 'insight');
+            //Kiểm tra kết nối
+            if (!$connect) {
+                die('kết nối không thành công ' . mysqli_connect_error());
+            }
+            //khởi tạo biến $i để đếm;
+            $i = 1;
+            //câu truy vấn
+            $sql = "SELECT value FROM ADDRESS";
+            //kiểm tra
+            if ($result = mysqli_query($connect, $sql)) {
+                while ($row = mysqli_fetch_array($result)) {
+                    //hiển thị dữ liệu
+                    echo '<div class="col-md-4">
+                    <div class="light-box box-hover">
+                    <h3><i class="fa fa-mobile"></i></h3>
+                      <h2>
+                      <span>Địa chỉ</span></h2>
+                      <p>'.$row['value'].'</p>
+                    </div>
+                  </div>';
+                }
+            } else
+                //Hiện thông báo khi không thành công
+                echo 'Không thành công. Lỗi' . mysqli_error($connect);
+            //ngắt kết nối
+            mysqli_close($connect);
+
+
+        ?>
+            
+                <?php
+            // khởi tạo kết nối
+            $connect = mysqli_connect('localhost', 'root', '', 'insight');
+            //Kiểm tra kết nối
+            if (!$connect) {
+                die('kết nối không thành công ' . mysqli_connect_error());
+            }
+            //khởi tạo biến $i để đếm;
+            $i = 1;
+            //câu truy vấn
+            $sql = "SELECT value FROM PHONE";
+            //kiểm tra
+            if ($result = mysqli_query($connect, $sql)) {
+                while ($row = mysqli_fetch_array($result)) {
+                    //hiển thị dữ liệu
+                    echo '<div class="col-md-4">
+                    <div class="light-box box-hover">
+                    <h3><i class="fa fa-mobile"></i></h3>
+                      <h2>
+                      <span>Điện thoại</span></h2>
+                      <p>'.$row['value'].'</p>
+                    </div>
+                  </div>'//tăng $i lên 1
+                  ;
+                    $i++;
+                }
+            } else
+                //Hiện thông báo khi không thành công
+                echo 'Không thành công. Lỗi' . mysqli_error($connect);
+            //ngắt kết nối
+            mysqli_close($connect);
+
+
+        ?>
+            
+                <?php
+            // khởi tạo kết nối
+            $connect = mysqli_connect('localhost', 'root', '', 'insight');
+            //Kiểm tra kết nối
+            if (!$connect) {
+                die('kết nối không thành công ' . mysqli_connect_error());
+            }
+            //khởi tạo biến $i để đếm;
+            $i = 1;
+            //câu truy vấn
+            $sql = "SELECT value FROM EMAIL";
+            //kiểm tra
+            if ($result = mysqli_query($connect, $sql)) {
+                while ($row = mysqli_fetch_array($result)) {
+                    //hiển thị dữ liệu
+                    echo '<div class="col-md-4">
+                    <div class="light-box box-hover">
+                    <h3><i class="fa fa-mobile"></i></h3>
+                      <h2>
+                      <span>Email</span></h2>
+                      <p><a href="#">'.$row['value'].'</a></p>
+                    </div>
+                  </div>'//tăng $i lên 1
+                  ;
+                    $i++;
+                }
+            } else
+                //Hiện thông báo khi không thành công
+                echo 'Không thành công. Lỗi' . mysqli_error($connect);
+            //ngắt kết nối
+            mysqli_close($connect);
+
+
+        ?>
               </div>
             </div>
             
