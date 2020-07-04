@@ -21,6 +21,12 @@ h1, h2, h3, h4, h5, h6
     padding-top: 3.3em;
     padding-bottom: 4.2em;
 }
+.blog .card{
+  width: 100%;
+}
+.blog .card img{
+  width: 100%;
+}
 
 span.typcn::before, i.typcn::before
 {
