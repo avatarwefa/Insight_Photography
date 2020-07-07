@@ -1,3 +1,9 @@
+<?php
+    include "lib/queries.php";
+    ob_start();
+    session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="vi">
     <head>
@@ -45,7 +51,15 @@
       <!-- Pushy Menu -->
       <nav class="pushy pushy-left">
         <ul class="list-unstyled">
-            <li><a href="pages/index.php">Đăng Kí/ Đăng Nhập</a></li>
+            <?php if (!isset($_SESSION['USER_NAME']))
+                        {
+                        require('pages/viewlogin.php');
+                        }
+                        else
+                        {
+                        require('pages/viewprofile.php');
+                        } ?>
+            
             <li><a href="#news">Chúng tôi là ai</a></li>
             <li><a href="#achievement">Những thành tựu</a></li>
             <li><a href="#Features">Tính năng của khoá học</a></li>

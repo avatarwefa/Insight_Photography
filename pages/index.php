@@ -1,5 +1,6 @@
 <?php
-
+ob_start();
+session_start();
 require "../lib/queries.php";
 $conn = myConnect();
 if (isset($_POST["btnSignup"]))
@@ -25,7 +26,7 @@ if (isset($_POST["btnSignup"]))
 if ($username == "" || $password == "" || $fullname == "" || $gender == "" || $idgroup == "")
 {
     $flag = 1;
-    echo "<script type='text/javascript'>alert('Please Check Your Information Again, Thank You');</script>";
+    echo "<script type='text/javascript'>alert('Kiểm tra các cột nhập liệu!');</script>";
 }
 if ( $password != $retypepassword  && $flag == 0 )
 {
@@ -39,13 +40,14 @@ if (mysqli_num_rows($result) > 0 && $flag == 0)
 }
 if ($flag == 0)
 {
+    $password = md5($password);
     if ($idgroup == 0)
     {
         $date = null;
     }
 
 
- echo  $qr = "
+  $qr = "
   INSERT INTO USER VALUES
   (null,'$username','$password','$gender','$email' ,'$fullname', '$date' ,'$idgroup')
   ";
@@ -77,24 +79,42 @@ $qr1 =
   ";
   $result = mysqli_query($conn,$qr1);
   $row_user = mysqli_fetch_array($result);
-  if ($user == $row_user['USER_NAME'] && $pass == $row_user['PASSWORD'])
+  if ($user == $row_user['USER_NAME'] && md5($pass) == $row_user['PASSWORD'])
   {
+    $_SESSION["IDGROUP"] = $row_user['IDGROUP'];
+    $user_id = $row_user['USER_ID'];
     $_SESSION["USER_ID"] = $row_user['USER_ID'];
+    $_SESSION["TRIAL_DATE"] =$row_user['TRIAL_DATE'];
+    if($_SESSION["IDGROUP"]==1 or $_SESSION["IDGROUP"]==2)
+    {
+        $time = date('Y-m-d',strtotime($_SESSION["TRIAL_DATE"] . ' + 1 month'));
+        if(date('Y-m-d') > $time)
+        {
+            $qr1 = "
+                UPDATE USER SET USER.IDGROUP=0 WHERE USER.USER_ID = $user_id
+            ";
+            $_SESSION["IDGROUP"] = 0;
+            $result = mysqli_query($conn,$qr1);
+            echo "<script type='text/javascript'>alert('Dùng thử đã hết hạn!');</script>";
+        }
+    }
+    
     $_SESSION["USER_NAME"] = $row_user['USER_NAME'];
     $fullname = $row_user['FULL_NAME'];
-
     $_SESSION["PASSWORD"] = $row_user['PASSWORD'];
     $_SESSION["FULL_NAME"] = $row_user['FULL_NAME'];
-    $_SESSION["TRIAL_DATE"] =$row_user['TRIAL_DATE'];
+    
+    $date = $_SESSION["TRIAL_DATE"];
     $_SESSION["EMAIL"] =$row_user['EMAIL'];
-    $_SESSION["IDGROUP"] = $row_user['IDGROUP'];
-        echo "<script> alert('Welcome $fullname');
+    
+    $_SESSION["GENDER"] =$row_user['GENDER'];
+        echo "<script> alert('Xin chào quay trở lại, $fullname ');
 window.setTimeout(function(){
 
 
     window.location.href = '../index.php';
 
-}, 3000);
+}, 1000);
 </script>";
 
   }
