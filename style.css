@@ -501,6 +501,47 @@ SEARCH
   background-color: rgb(15, 74, 129);
 }
 
-.vidarea{
+.videoarea{
+  width: 100%;
+  height: 370px;
+}
+
+.playlist{
+  height:370px;
+  overflow-y: scroll;
+}
+
+.playlist .item{
+  width: 100%;
+  padding: 5px;
+  box-shadow: 1px 1px 1px rgb(199, 198, 198);
+  display:flex;
+  align-items:center;
+
+}
+.playlist .item a{
+  vertical-align: middle; 
+  display: flex;
+}
+.playlist .item img {
+  width: 40%;
+  height: auto;
+}
+.playlist .item .title{
+  font-size: 12pt;
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.playlist .item .title .des{
+  font-size: 10pt;
+  font-weight: lighter;
+  margin-bottom: 0;
+}
+
+.active{
+  background: linear-gradient(90deg, rgb(192, 192, 196) 0%, rgb(230, 230, 231) 35%, rgb(255, 255, 255) 100%);
+}
+.w100{
   width: 100%;
 }

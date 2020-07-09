@@ -9,7 +9,10 @@ if (!isset($_SESSION['USER_NAME']))
    echo "<script type='text/javascript'>alert('Bạn phải đăng nhập trước!!');</script>";
    header("location:index.php");
 }
- // echo "<script type='text/javascript'>alert('$_SESSION['USER_NAME']');</script>";
+
+ //echo "<script type='text/javascript'>alert('$_SESSION['USER_NAME']');</script>";
+
+ 
 ?>
 
 <!DOCTYPE html>
@@ -119,9 +122,11 @@ if (!isset($_SESSION['USER_NAME']))
 
                 if ($result = mysqli_query($connect, $sql)) {
                     $row = mysqli_fetch_array($result)
-                    ?>
-                    <h4><?php echo $row['name']; ?> - Giảng viên: <?php echo $row['teacher']; ?><h4>
-                        <div class="col-lg-8 col-md-8">
+
+                ?>
+                    <h4><?php echo $row['name']; ?> - Giảng viên: <?php echo $row['teacher']; ?><h4><hr>
+                            <div class="col-lg-8 col-md-8">
+
                             <?php
                         } else
                             //Hiện thông báo khi không thành công
@@ -138,29 +143,77 @@ if (!isset($_SESSION['USER_NAME']))
                         }
                         $i = 1;
                             //câu truy vấn
-                        $sql = "SELECT * FROM LESSONS WHERE course_id = $id";
-                        $current_vid = $sql;
-                            //kiểm tra
-                        if ($result1 = mysqli_query($connect, $sql)) {
-                            $first_vid = mysqli_fetch_array($result1);
+
+                            $sql = "SELECT * FROM LESSONS WHERE course_id = $id";
                             
+                            //kiểm tra
+                            if ($result1 = mysqli_query($connect, $sql)) {
+                                $data = mysqli_fetch_array($result1);
+                                
                             ?>
                             
-                            <iframe width="560" height="315" id="youtube" 
-                            src="https://www.youtube.com/embed/<?php echo $first_vid["video_id"] ?> " 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                        <h5 id = "vidtitle"><?php echo $first_vid["title"] ?></h5>
+                            <iframe class= "videoarea" id="youtube" 
+                                src="https://www.youtube.com/embed/<?php echo $data["video_id"] ?> " 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                            <h5 id = "vidtitle">
+                                Bài <?php echo $data["lessons_id"] ?>: <?php echo $data["title"] ?>
+                            </h5>
+                            <p id="description">
+                            <?php echo $data["description"] ?>
+                            </p>
                         
-                    </div>
-                    <div class="col-lg-4 col-md-4">
-                        <a href="javascript:void(0)"
-                        title = "<?php echo $first_vid["title"] ?>" 
-                        data-src="https://www.youtube.com/embed/<?php echo $first_vid["video_id"] ?> " class="src">
-                        <?php echo $first_vid["title"]?> </a><br>
+                                
+                                    
+                                
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                            <div class="playlist" data-spy="scroll" data-target="#myScrollspy" data-offset="10">
 
+                                <div class = "item">
+                                    <a href="javascript:void(0)" 
+                                        title = "<?php echo $data["title"] ?>" 
+                                        des = "<?php echo $data["description"] ?>" 
+                                        idx = "<?php echo $data["lessons_id"] ?>"
+                                        data-src="https://www.youtube.com/embed/<?php echo $data["video_id"] ?>" 
+                                        class="src active">
+                                            <img src = "https://i.ytimg.com/vi/<?php echo $data["video_id"] ?>/maxresdefault.jpg">
+                                            <div class ="title">
+                                                Bài <?php echo $data["lessons_id"] ?>: <?php echo $data["title"] ?>
+                                                <p class ="des"> <?php echo $data["description"] ?>
+                                            </div>
+                                            
+                                    </a>
+                                </div>
+                                
+                                <?php
+                                while ($data = mysqli_fetch_array($result1)) {
+                                ?>
+                                <div class = "item inner">
+                                    <a href="javascript:void(0)" 
+                                        title = "<?php echo $data["title"] ?>" 
+                                        des = "<?php echo $data["description"] ?>" 
+                                        idx = "<?php echo $data["lessons_id"] ?>"
+                                        data-src="https://www.youtube.com/embed/<?php echo $data["video_id"] ?>" 
+                                        class="src active">
+                                            <img src = "https://i.ytimg.com/vi/<?php echo $data["video_id"] ?>/maxresdefault.jpg">
+                                            <div class ="title">
+                                                Bài <?php echo $data["lessons_id"] ?>: <?php echo $data["title"] ?>
+                                                <p class ="des"> <?php echo $data["description"] ?>
+                                            </div>
+                                            
+                                    </a>
+                                </div>
+                              
+
+                                <?php
+                                    $i++;
+                                }
+                                ?>
+                            </div>
+                            </div>
 
                         <?php
                         while ($data = mysqli_fetch_array($result1)) {
@@ -198,32 +251,44 @@ if (!isset($_SESSION['USER_NAME']))
         </div>
     </footer>
     <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap-scrollspy.js"></script>
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-        <script src="http://masonry.desandro.com/masonry.pkgd.js"></script>
-        <script src="assets/js/masonry.js"></script>
-        <script src="assets/js/pushy.min.js"></script>
-        <script src="assets/js/jquery.magnific-popup.min.js"></script>
-        <script src="assets/js/wow.min.js"></script>
-        <script src="assets/js/scripts.js"></script>
-        <script src="assets/js/odometer.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $(document).on('click', '.src', function() {
-                    var src = $(this).attr('data-src');
-                    var title = $(this).attr('title');
-                    $("#youtube").attr('src', src += '?autoplay=1');
-                    $("#vidtitle").html(title);
-                });
+
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap-scrollspy.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="http://masonry.desandro.com/masonry.pkgd.js"></script>
+    <script src="assets/js/masonry.js"></script>
+    <script src="assets/js/pushy.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    <script src="assets/js/odometer.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on('click', '.src', function() {
+                var src = $(this).attr('data-src');
+                var title = $(this).attr('title');
+                var idx = $(this).attr('idx');
+                var des = $(this).attr('des');
+                var caption = "Bài " + idx + ": " + title
+                $('.src').removeClass('active');
+                $("#youtube").attr('src', src += '?autoplay=1');
+                $("#vidtitle").html(caption);
+                $("#description").html(des);
+                $(this).addClass('active');
+            });
             });
         </script>
 
 
-    </body>
 
-    </html>
+</body>
+</html>
