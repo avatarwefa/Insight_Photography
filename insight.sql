@@ -157,11 +157,11 @@ INSERT INTO `images` (`ID`, `url`) VALUES
 (6, 'https://unsplash.it/600/300?image=515'),
 (7, 'https://unsplash.it/600/300?image=451');
 
-INSERT INTO `lessons` (`lessons_id`, `course_id`, `video`, `title`) VALUES
-(1, 1, 'https://www.youtube.com/embed/UEWGvm--zz4', 'Nhiếp ảnh là gì'),
-(2, 1, 'https://www.youtube.com/embed/UEWGvm--zz4', 'Chọn máy ảnh'),
-(3, 1, 'https://www.youtube.com/embed/UEWGvm--zz4', 'Title'),
-(4, 1, 'https://www.youtube.com/embed/2VjHjA0GlbM', 'Title4');
+INSERT INTO `lessons` (`lessons_id`, `course_id`, `video_id`, `title`) VALUES
+(1, 1, 'UEWGvm--zz4', 'Nhiếp ảnh là gì'),
+(2, 1, 'UEWGvm--zz4', 'Chọn máy ảnh'),
+(3, 1, 'UEWGvm--zz4', 'Title'),
+(4, 1, '2VjHjA0GlbM', 'Title4');
 
 INSERT INTO `phone` (`ID`, `value`) VALUES
 (1, '01234534325');

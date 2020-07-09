@@ -32,11 +32,11 @@
                                             <div class="event-month"><?php echo date("F", strtotime($event_date)); ?></div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td style="color:   #404040">
                                       <?php echo $EventList['SCHEDULE_INFO'] ; ?>
                                   </td>
-                                  <td class="event-venue hidden-xs"><i class="icon-map-marker"><?php echo $EventList['SCHEDULE_GADGETS'] ; ?> </i></td>
-                                  <td class="event-price hidden-xs"><?php if ($EventList['SCHEDULE_FREE']==0) { echo 'FREE';} else echo 'VIP' ; ?></td>
+                                  <td class="event-venue hidden-xs" style="color:   #404040;"><i class="icon-map-marker"><?php echo $EventList['SCHEDULE_GADGETS'] ; ?> </i></td>
+                                  <td class="event-price hidden-xs" style="color:   #404040"><?php if ($EventList['SCHEDULE_FREE']==0) { echo 'FREE';} else echo 'VIP' ; ?></td>
                                   <td><a href="#" class="btn btn-grey btn-sm event-more"><?php echo $EventList['SCHEDULE_AREA'] ; ?> </a></td>
                                         </tr>
 
