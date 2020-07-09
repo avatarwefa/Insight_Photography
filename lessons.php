@@ -1,3 +1,16 @@
+
+<?php
+require "lib/queries.php"
+ob_start();
+session_start();
+if (!isset($_SESSION['USER_NAME']))
+{
+     echo "<script type='text/javascript'>alert('Bạn phải đăng nhập trước!!');</script>";
+     header("location:index.php");
+}
+ echo "<script type='text/javascript'>alert('$_SESSION['USER_NAME']');</script>";
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 
