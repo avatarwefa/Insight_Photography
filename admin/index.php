@@ -89,6 +89,7 @@
                   <li><a href="quanLyKhoaHoc.php" >QUẢN LÝ KHÓA HỌC </a></li>
                   <li><a href="quanLyBaiHoc.php" >QUẢN LÝ BÀI HỌC </a></li>
                   <li><a href="newsletter.php">NEWSLETTER</a></li>
+                  <li><a href="quanLyLichTrinh.php" >QUẢN LÝ LỊCH HỌC </a></li>
                   <!-- <li><a href="./listQuangCao.php">QUẢN lÝ QUẢNG CÁO</a></li> -->
                 </ul>
               </div>
