@@ -2,8 +2,8 @@
 //Chuyển hướng k bị lỗi
 // ob_start();
 // session_start();
-	// echo $_SESSION["idGroup"];
-	// if(!isset($_SESSION["idUser"]) || $_SESSION["idGroup"] != 1){
+	// echo $_SESSION["SCHEDULE_FREE"];
+	// if(!isset($_SESSION["idUser"]) || $_SESSION["SCHEDULE_FREE"] != 1){
 	// 	header("location:../index.php");
 	// }
 	//ket noi csdl
@@ -29,7 +29,7 @@ session_start();
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <![endif]-->
-      <title>Quản Lý Bài Học</title>
+      <title>Quản Lý Thành Viên</title>
       <!-- BOOTSTRAP CORE STYLE  -->
       <link href="assets/css/bootstrap.css" rel="stylesheet" />
       <!-- FONT AWESOME STYLE  -->
@@ -76,9 +76,9 @@ session_start();
                   <li><a href="index.php" >TRANG CHỦ</a></li>
                   <li><a href="quanLyThanhVien.php">QUẢN LÝ THÀNH VIÊN</a></li>
                   <li><a href="quanLyKhoaHoc.php" >QUẢN LÝ KHÓA HỌC </a></li>
-                  <li><a href="" >QUẢN LÝ BÀI HỌC </a></li>
+                  <li><a href="quanLyBaiHoc.php" >QUẢN LÝ BÀI HỌC </a></li>
                   <li><a href="newsletter.php">NEWSLETTER</a></li>
-                  <li><a href="quanLyLichTrinh.php">QUẢN LÝ LỊCH HỌC</a></li>
+                  <li><a href="">QUẢN LÝ LỊCH HỌC</a></li>
                   <!-- <li><a href="./listQuangCao.php">QUẢN lÝ QUẢNG CÁO</a></li> -->
                 </ul>
               </div>
@@ -94,7 +94,7 @@ session_start();
           <br />  
           <br />  
           <div class="table-responsive">  
-           <h3 align="center">QUẢN LÝ BÀI HỌC INSIGHT</h3><br />
+           <h3 align="center">QUẢN LÝ LỊCH HỌC INSIGHT</h3><br />
            <div id="live_data"></div>                 
          </div>  
        </div>  
@@ -115,7 +115,7 @@ session_start();
       function fetch_data()  
       {  
            $.ajax({  
-                url:"lessons/select.php",  
+                url:"schedule/select.php",  
                 method:"POST",  
                 success:function(data){  
                      $('#live_data').html(data);  
@@ -124,15 +124,26 @@ session_start();
       }  
       fetch_data();  
       $(document).on('click', '#btn_add', function(){  
-           var course_id = $('#course_id').text();
-           var video = $('#video').text();
-           var title = $('#title').text(); 
-   
+           var SCHEDULE_INFO = $('#SCHEDULE_INFO').text();
+           var SCHEDULE_GADGETS = $('#SCHEDULE_GADGETS').text(); 
+           var SCHEDULE_DATE = $('#SCHEDULE_DATE').text();  
+           var SCHEDULE_AREA = $('#SCHEDULE_AREA').text();
+           var SCHEDULE_FREE = $('#SCHEDULE_FREE').text(); 
             
+           // if(HoTen == '' || HoTen.length <2 || HoTen.length > 40)  
+           // {  
+           //      alert("Enter name with range of 5-40 characters");  
+           //      return false;  
+           // }  
+           // if(SCHEDULE_FREE == '' || isNaN(year))  
+           // {  
+           //      alert("Enter SCHEDULE_FREE in NUMBER ");  
+           //      return false;  
+           // }  
            $.ajax({  
-                url:"lessons/insert.php",  
+                url:"schedule/insert.php",  
                 method:"POST",  
-                data:{course_id:course_id,video:video, title:title},  
+                data:{SCHEDULE_INFO:SCHEDULE_INFO, SCHEDULE_GADGETS:SCHEDULE_GADGETS,SCHEDULE_DATE:SCHEDULE_DATE,SCHEDULE_AREA:SCHEDULE_AREA,SCHEDULE_FREE:SCHEDULE_FREE},  
                 dataType:"text",  
                 success:function(data)  
                 {  
@@ -141,41 +152,53 @@ session_start();
                 }  
            })  
       });  
-      function edit_data(lessons_id, text, column_name)  
+      function edit_data(SCHEDULE_ID, text, column_name)  
       {  
            $.ajax({  
-                url:"lessons/edit.php",  
+                url:"schedule/edit.php",  
                 method:"POST",  
-                data:{lessons_id:lessons_id, text:text, column_name:column_name},  
+                data:{SCHEDULE_ID:SCHEDULE_ID, text:text, column_name:column_name},  
                 dataType:"text",  
                 success:function(data){  
                      alert(data);  
                 }  
            });  
       }  
-      $(document).on('blur', '.course_id', function(){  
-           var course_id = $(this).data("id1");  
-           var course_id = $(this).text();  
-           edit_data(lessons_id, course_id, "course_id");  
-      }); 
-      $(document).on('blur', '.video', function(){  
-           var lessons_id = $(this).data("id2");  
-           var video = $(this).text();  
-           edit_data(lessons_id, video, "video");  
+      $(document).on('blur', '.SCHEDULE_INFO', function(){  
+           var SCHEDULE_ID = $(this).data("id1");  
+           var SCHEDULE_INFO = $(this).text();  
+           edit_data(SCHEDULE_ID, SCHEDULE_INFO, "SCHEDULE_INFO");  
       });      
-      $(document).on('blur', '.title', function(){  
-           var lessons_id = $(this).data("id3");  
-           var title = $(this).text();  
-           edit_data(lessons_id, title, "title");  
+      $(document).on('blur', '.SCHEDULE_GADGETS', function(){  
+           var SCHEDULE_ID = $(this).data("id2");  
+           var SCHEDULE_GADGETS = $(this).text();  
+           edit_data(SCHEDULE_ID, SCHEDULE_GADGETS, "SCHEDULE_GADGETS");  
       });       
+      $(document).on('blur', '.SCHEDULE_DATE', function(){  
+           var SCHEDULE_ID = $(this).data("id3");  
+           var SCHEDULE_DATE = $(this).text(); 
+
+           edit_data(SCHEDULE_ID, SCHEDULE_DATE, "SCHEDULE_DATE");  
+      });  
+      $(document).on('blur', '.SCHEDULE_AREA', function(){  
+           var SCHEDULE_ID = $(this).data("id4");  
+           var SCHEDULE_AREA = $(this).text();  
+           edit_data(SCHEDULE_ID, SCHEDULE_AREA, "SCHEDULE_AREA");  
+      }); 
+
+      $(document).on('blur', '.SCHEDULE_FREE', function(){  
+           var SCHEDULE_ID = $(this).data("id5");  
+           var SCHEDULE_FREE = $(this).text(); 
+           edit_data(SCHEDULE_ID,SCHEDULE_FREE, "SCHEDULE_FREE");  
+      });  
       $(document).on('click', '.btn_delete', function(){  
-           var lessons_id = $(this).data("id7");  
+           var SCHEDULE_ID = $(this).data("id7");  
            if(confirm("Bạn muốn xoá hàng này?"))  
            {  
                 $.ajax({  
-                     url:"lessons/delete.php",  
+                     url:"schedule/delete.php",  
                      method:"POST",  
-                     data:{lessons_id:lessons_id},  
+                     data:{SCHEDULE_ID:SCHEDULE_ID},  
                      dataType:"text",  
                      success:function(data){  
                           alert(data);  
