@@ -24,7 +24,7 @@
                 <tr>  
                      <td>'.$row["lessons_id"].'</td>  
                      <td class="course_id" data-id1="'.$row["lessons_id"].'" contenteditable>'.$row["course_id"].'</td>  
-                     <td class="video" data-id2="'.$row["lessons_id"].'" contenteditable>'.$row["video"].'</td>  
+                     <td class="video" data-id2="'.$row["lessons_id"].'" contenteditable>'.$row["video_id"].'</td>  
                      <td class="title" data-id3="'.$row["lessons_id"].'" contenteditable>'.$row["title"].'</td>  
                      <td><button type="button" name="delete_btn" data-id7="'.$row["lessons_id"].'" class="btn btn-xs btn-danger btn_delete">Delete</button></td>  
                 </tr>  
