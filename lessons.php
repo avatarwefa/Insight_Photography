@@ -1,14 +1,15 @@
 
 <?php
-require "lib/queries.php"
+
+require "lib/queries.php";
 ob_start();
 session_start();
 if (!isset($_SESSION['USER_NAME']))
 {
-     echo "<script type='text/javascript'>alert('Bạn phải đăng nhập trước!!');</script>";
-     header("location:index.php");
+   echo "<script type='text/javascript'>alert('Bạn phải đăng nhập trước!!');</script>";
+   header("location:index.php");
 }
- echo "<script type='text/javascript'>alert('$_SESSION['USER_NAME']');</script>";
+ // echo "<script type='text/javascript'>alert('$_SESSION['USER_NAME']');</script>";
 ?>
 
 <!DOCTYPE html>
@@ -29,24 +30,24 @@ if (!isset($_SESSION['USER_NAME']))
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700,100' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Raleway:300,700,900,500' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.7/typicons.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/pushy.css">
-    <link rel="stylesheet" href="assets/css/masonry.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/odometer-theme-default.css">
+  <![endif]-->
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700,100' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Raleway:300,700,900,500' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.7/typicons.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/pushy.css">
+  <link rel="stylesheet" href="assets/css/masonry.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <link rel="stylesheet" href="assets/css/magnific-popup.css">
+  <link rel="stylesheet" href="assets/css/odometer-theme-default.css">
 
-    <!-- Hook -->
+  <!-- Hook -->
 
 
 
-    <script>
-        window.odometerOptions = {
-            selector: '.odometer',
+  <script>
+    window.odometerOptions = {
+        selector: '.odometer',
             format: '(,ddd)', //group số, và số chữ số sau digit
             duration: 13000, // thời gian đợi của javascript
             theme: 'default'
@@ -58,35 +59,40 @@ if (!isset($_SESSION['USER_NAME']))
     <!-- Pushy Menu -->
     <nav class="pushy pushy-left">
         <ul class="list-unstyled">
-            <li><a href="pages/index.php">Đăng Kí/ Đăng Nhập</a></li>
-            <li><a href="#news">Chúng tôi là ai</a></li>
-            <li><a href="#achievement">Những thành tựu</a></li>
-            <li><a href="#Features">Tính năng của khoá học</a></li>
-            <li><a href="#review">Học viên nói gì</a></li>
-            <li><a href="#pricing">Bảng giá</a></li>
-            <li><a href="#photos">Hình ảnh từ khoá học</a></li>
-            <li><a href="#newsletter">Đăng kí newsletter</a></li>
-            <li><a href="#contact">Liên hệ!</a></li>
-            <li><a href="https://www.youtube.com/watch?v=dFz5E1rZqR4" target="_blank">Buổi học thử</a></li>
-        </ul>
-    </nav>
+           <?php if (!isset($_SESSION['USER_NAME'])) {
+            require('pages/viewlogin.php');
+        } else {
+            require('pages/viewprofile.php');
+        } ?>
+        <li><a href="pages/index.php">Đăng Kí/ Đăng Nhập</a></li>
+        <li><a href="#news">Chúng tôi là ai</a></li>
+        <li><a href="#achievement">Những thành tựu</a></li>
+        <li><a href="#Features">Tính năng của khoá học</a></li>
+        <li><a href="#review">Học viên nói gì</a></li>
+        <li><a href="#pricing">Bảng giá</a></li>
+        <li><a href="#photos">Hình ảnh từ khoá học</a></li>
+        <li><a href="#newsletter">Đăng kí newsletter</a></li>
+        <li><a href="#contact">Liên hệ!</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dFz5E1rZqR4" target="_blank">Buổi học thử</a></li>
+    </ul>
+</nav>
 
-    <!-- Site Overlay -->
-    <div class="site-overlay"></div>
+<!-- Site Overlay -->
+<div class="site-overlay"></div>
 
-    <header id="home">
-        <div class="container-fluid">
-            <!-- Thay đổi hình ảnh tại style.css to the class header .container-fluid [approximately row 50] -->
-            <div class="container">
-                <div class="row">
+<header id="home">
+    <div class="container-fluid">
+        <!-- Thay đổi hình ảnh tại style.css to the class header .container-fluid [approximately row 50] -->
+        <div class="container">
+            <div class="row">
 
-                    <div class="col-xs-2 text-center">
-                        <div class="menu-btn"><span class="hamburger">&#9776;</span></div>
-                    </div>
+                <div class="col-xs-2 text-center">
+                    <div class="menu-btn"><span class="hamburger">&#9776;</span></div>
                 </div>
-                <div class="jumbotron">
-                    <h1><small>Nơi khơi nguồn cho đam mê</small>
-                        <strong>Nhiếp ảnh</strong></h1>
+            </div>
+            <div class="jumbotron">
+                <h1><small>Nơi khơi nguồn cho đam mê</small>
+                    <strong>Nhiếp ảnh</strong></h1>
                     <p>Đây là nơi bạn có thể biến những khoảnh khắc thành những bước ảnh đắc giá cho hành trình của bạn.</p>
                     <p><a class="btn btn-primary btn-lg" role="button">Tìm hiểu thêm</a> <a target="_blank" href="#Features" class="btn btn-lg btn-danger" role="button">Chúng tôi trên Youtube</a></p>
                 </div>
@@ -113,67 +119,67 @@ if (!isset($_SESSION['USER_NAME']))
 
                 if ($result = mysqli_query($connect, $sql)) {
                     $row = mysqli_fetch_array($result)
-                ?>
+                    ?>
                     <h4><?php echo $row['name']; ?> - Giảng viên: <?php echo $row['teacher']; ?><h4>
-                            <div class="col-lg-8 col-md-8">
+                        <div class="col-lg-8 col-md-8">
                             <?php
                         } else
                             //Hiện thông báo khi không thành công
-                            echo 'Không thành công. Lỗi' . mysqli_error($connect);
+                        echo 'Không thành công. Lỗi' . mysqli_error($connect);
                         //ngắt kết nối
                         mysqli_close($connect);
-                            ?>
-
-                            <?php
-                            $connect = mysqli_connect('localhost', 'root', '', 'insight');
-                            mysqli_set_charset($connect, "UTF8");
-                            if (!$connect) {
-                                die('kết nối không thành công ' . mysqli_connect_error());
-                            }
-                            $i = 1;
-                            //câu truy vấn
-                            $sql = "SELECT * FROM LESSONS WHERE course_id = $id";
-                            $current_vid = $sql;
-                            //kiểm tra
-                            if ($result1 = mysqli_query($connect, $sql)) {
-                                $first_vid = mysqli_fetch_array($result1);
-                                
-                            ?>
-                                
-                                    <iframe width="560" height="315" id="youtube" 
-                                    src="https://www.youtube.com/embed/<?php echo $first_vid["video_id"] ?> " 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                                    </iframe>
-                                    <h5 id = "vidtitle"><?php echo $first_vid["title"] ?></h5>
-                                
-                            </div>
-                            <div class="col-lg-4 col-md-4">
-                                <a href="javascript:void(0)"
-                                title = "<?php echo $first_vid["title"] ?>" 
-                                data-src="https://www.youtube.com/embed/<?php echo $first_vid["video_id"] ?> " class="src">
-                                    <?php echo $first_vid["title"]?> </a><br>
-
-
-                                <?php
-                                while ($data = mysqli_fetch_array($result1)) {
-                                ?>
-                                    <a href="javascript:void(0)" 
-                                    title = "<?php echo $data["title"] ?>" 
-                                    data-src="https://www.youtube.com/embed/<?php echo $data["video_id"] ?>" 
-                                    class="src">
-                                        <?php echo $data["title"] ?></a><br>
-                                <?php
-                                    $i++;
-                                }
-                                ?>
-                            </div>
-                        <?php
-                            } else
-                                echo 'Không thành công. Lỗi' . mysqli_error($connect);
-                            mysqli_close($connect);
                         ?>
+
+                        <?php
+                        $connect = mysqli_connect('localhost', 'root', '', 'insight');
+                        mysqli_set_charset($connect, "UTF8");
+                        if (!$connect) {
+                            die('kết nối không thành công ' . mysqli_connect_error());
+                        }
+                        $i = 1;
+                            //câu truy vấn
+                        $sql = "SELECT * FROM LESSONS WHERE course_id = $id";
+                        $current_vid = $sql;
+                            //kiểm tra
+                        if ($result1 = mysqli_query($connect, $sql)) {
+                            $first_vid = mysqli_fetch_array($result1);
+                            
+                            ?>
+                            
+                            <iframe width="560" height="315" id="youtube" 
+                            src="https://www.youtube.com/embed/<?php echo $first_vid["video_id"] ?> " 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                        <h5 id = "vidtitle"><?php echo $first_vid["title"] ?></h5>
+                        
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <a href="javascript:void(0)"
+                        title = "<?php echo $first_vid["title"] ?>" 
+                        data-src="https://www.youtube.com/embed/<?php echo $first_vid["video_id"] ?> " class="src">
+                        <?php echo $first_vid["title"]?> </a><br>
+
+
+                        <?php
+                        while ($data = mysqli_fetch_array($result1)) {
+                            ?>
+                            <a href="javascript:void(0)" 
+                            title = "<?php echo $data["title"] ?>" 
+                            data-src="https://www.youtube.com/embed/<?php echo $data["video_id"] ?>" 
+                            class="src">
+                            <?php echo $data["title"] ?></a><br>
+                            <?php
+                            $i++;
+                        }
+                        ?>
+                    </div>
+                    <?php
+                } else
+                echo 'Không thành công. Lỗi' . mysqli_error($connect);
+                mysqli_close($connect);
+                ?>
             </div>
         </div>
     </section>
@@ -192,32 +198,32 @@ if (!isset($_SESSION['USER_NAME']))
         </div>
     </footer>
     <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap-scrollspy.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="http://masonry.desandro.com/masonry.pkgd.js"></script>
-    <script src="assets/js/masonry.js"></script>
-    <script src="assets/js/pushy.min.js"></script>
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/scripts.js"></script>
-    <script src="assets/js/odometer.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $(document).on('click', '.src', function() {
-                var src = $(this).attr('data-src');
-                var title = $(this).attr('title');
-                $("#youtube").attr('src', src += '?autoplay=1');
-                $("#vidtitle").html(title);
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap-scrollspy.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+        <script src="http://masonry.desandro.com/masonry.pkgd.js"></script>
+        <script src="assets/js/masonry.js"></script>
+        <script src="assets/js/pushy.min.js"></script>
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+        <script src="assets/js/odometer.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(document).on('click', '.src', function() {
+                    var src = $(this).attr('data-src');
+                    var title = $(this).attr('title');
+                    $("#youtube").attr('src', src += '?autoplay=1');
+                    $("#vidtitle").html(title);
+                });
             });
-        });
-    </script>
+        </script>
 
 
-</body>
+    </body>
 
-</html>
+    </html>

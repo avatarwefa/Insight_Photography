@@ -86,7 +86,8 @@ if (isset($_GET["coban"])) {
 
                 // var_dump($result);
                 // echo $qr1;
-                echo "<script type='text/javascript'>alert('Bắt đầu dùng thử gói chuyên nghiệp');</script>";
+                echo "<script type='text/javascript'>alert('Bắt đầu dùng thử gói chuyên nghiệp');
+                 window.location.href='index.php';</script>";
             } else if (isset($_GET["nangcao"]) or ($_SESSION["IDGROUP"] == 1)) {
 
                 $qr1 = "
@@ -97,7 +98,8 @@ if (isset($_GET["coban"])) {
 
                 $_SESSION["IDGROUP"] = 1;
                 $result = mysqli_query($conn, $qr1);
-                echo "<script type='text/javascript'>alert('Bắt đầu dùng thử gói nâng cao');</script>";
+                echo "<script type='text/javascript'>alert('Bắt đầu dùng thử gói nâng cao');
+                 window.location.href='index.php';</script>";
             }
         } else if ($_SESSION["IDGROUP"] == 0) {
             echo "<script type='text/javascript'>alert('Mỗi tài khoản chỉ có một phiên dùng thử');

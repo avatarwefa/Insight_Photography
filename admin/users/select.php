@@ -1,8 +1,10 @@
 <?php  
  $connect = mysqli_connect("localhost", "root", "", "insight");  
  $output = '';  
- $sql = "SELECT * FROM user ORDER BY USER_ID DESC";  
+ $sql = "SELECT * FROM user ORDER BY USER_ID";  
  $result = mysqli_query($connect, $sql);  
+mysqli_set_charset($connect, 'UTF8');
+
  $output .= '  
       <div class="table-responsive">  
            <table class="table table-bordered">  

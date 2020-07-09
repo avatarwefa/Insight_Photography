@@ -72,7 +72,7 @@ if(isset($_POST["btnSignout"]))
               TRANG QUẢN TRỊ
 
             </a>
-            <h3 class="text-danger">Xin chào <?php echo $_SESSION["FULL_NAME"] ?></h3>
+             <div class="text-danger">Xin chào <?php echo $_SESSION["FULL_NAME"] ?></div>
 
           </div>
 

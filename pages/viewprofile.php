@@ -1,3 +1,5 @@
+<!--  -->
+
 <?php 
 if(isset($_POST["btnSignout"]))
 {
@@ -14,7 +16,7 @@ if(isset($_POST["btnSignout"]))
 ?>
 <li>
     <div class="card-container">
-        <span class="pro"><?php switch ($_SESSION["IDGROUP"]) {
+        <span class="pro" style="left: 5px;"><?php switch ($_SESSION["IDGROUP"]) {
             case 1:
             case 3:
             echo "Nâng Cao";
@@ -48,6 +50,9 @@ if(isset($_POST["btnSignout"]))
         }
         ?>
         <p><?php echo $_SESSION['EMAIL'] ?></p>
+        <div class="buttons">
+           <a class="btn btn-outline-dark" href="course.php" role="button">Khóa Học Của Bạn</a>
+        </div>
         <div class="buttons">
             <a class="btn btn-outline-dark" href="pages/editProfile.php" role="button">Thay đổi thông tin người dùng</a>
             <form method="post">
