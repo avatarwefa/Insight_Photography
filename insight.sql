@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2020 at 09:40 PM
+-- Generation Time: Jul 09, 2020 at 11:03 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -192,6 +192,18 @@ INSERT INTO `phone` (`ID`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `resetpassword`
+--
+
+CREATE TABLE `resetpassword` (
+  `id` int(11) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `schedule`
 --
 
@@ -234,11 +246,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`USER_ID`, `USER_NAME`, `PASSWORD`, `GENDER`, `EMAIL`, `FULL_NAME`, `TRIAL_DATE`, `IDGROUP`) VALUES
-(1, 'k', '8ce4b16b22b58894aa86c421e8759df3', 1, 'k@k', 'k', '0000-00-00', 0),
-(2, 'a', '0cc175b9c0f1b6a831c399e269772661', 1, 'a@a', 'a', '0000-00-00', 0),
 (4, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 1, 'anh.trantuananh@hcmut.edu.vn', 'T? Ng?c Huy', '2020-07-09', 1),
-(5, 'Trantran', 'e10adc3949ba59abbe56e057f20f883e', 1, 'trantuananh100119999@gmail.com', 'Trần Tuấn Anh', '2020-07-09', 5),
-(6, 'admin2', 'e10adc3949ba59abbe56e057f20f883e', 1, 'adbfvidbf@dfbhfbd', 'Mạnh Thường Quân', '2020-07-09', 2);
+(5, 'Trantran', 'e10adc3949ba59abbe56e057f20f883e', 1, 'trantuananh100119999@gmail.com', 'Trần Tuấn Anh', '2020-07-09', 5);
 
 --
 -- Indexes for dumped tables
