@@ -43,7 +43,8 @@ if ($flag == 0)
     $password = md5($password);
     if ($idgroup == 0)
     {
-        $date = null;
+        #$date = null;
+        $date = '0000-00-00';
     }
 
 
@@ -54,6 +55,7 @@ if ($flag == 0)
   mysqli_query($conn,$qr);
 
     echo "<script type='text/javascript'>alert('Đăng kí thành công! Bạn có thể đăng nhập ngay bây giờ.);</script>";
+    echo($qr);
 
 }
 

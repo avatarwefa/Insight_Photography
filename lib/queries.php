@@ -1,6 +1,7 @@
 <?php
 function myConnect() {
     $servername = "127.0.0.1:3306";
+    // $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "insight";
@@ -9,7 +10,3 @@ function myConnect() {
     mysqli_query($conn, "SET NAME 'utf8'");
     return $conn;
 }
-
-
-
-?>
