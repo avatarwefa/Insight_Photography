@@ -237,7 +237,7 @@ h2::after { content: " "; border: solid 2px #3dc9b3; display: block; width: 35px
 
 
 
-@media (min-width: 900px) {
+@media (min-width: 960px) {
   .background {
     padding: 0 0 25px;
   }
@@ -265,7 +265,7 @@ h2::after { content: " "; border: solid 2px #3dc9b3; display: block; width: 35px
   flex-direction: column;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 760px) {
   .pricing-table {
     flex-direction: row;
   }
@@ -285,7 +285,7 @@ h2::after { content: " "; border: solid 2px #3dc9b3; display: block; width: 35px
   border-bottom: none;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 480px) {
   .pricing-plan {
     border-bottom: none;
     border-right: 1px solid #e1f1ff;
@@ -544,4 +544,25 @@ SEARCH
 }
 .w100{
   width: 100%;
+}
+
+.comment{
+  height:280px;
+  overflow-y: scroll;
+}
+
+.comment .item{
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+.comment .item .user_name{
+  font-size: 14pt;
+  font-weight: unset;
+}
+
+.comment .input{
+  width: 100%;
+  padding: 5px;
 }

@@ -164,7 +164,7 @@ if (!isset($_SESSION['USER_NAME']))
                             <p id="description">
                             <?php echo $data["description"] ?>
                             </p>
-                        
+                            
                                 
                                     
                                 
@@ -178,7 +178,7 @@ if (!isset($_SESSION['USER_NAME']))
                                         des = "<?php echo $data["description"] ?>" 
                                         idx = "<?php echo $data["lessons_id"] ?>"
                                         data-src="https://www.youtube.com/embed/<?php echo $data["video_id"] ?>" 
-                                        class="src active">
+                                        class="src">
                                             <img src = "https://i.ytimg.com/vi/<?php echo $data["video_id"] ?>/maxresdefault.jpg">
                                             <div class ="title">
                                                 Bài <?php echo $data["lessons_id"] ?>: <?php echo $data["title"] ?>
@@ -198,7 +198,7 @@ if (!isset($_SESSION['USER_NAME']))
                                         des = "<?php echo $data["description"] ?>" 
                                         idx = "<?php echo $data["lessons_id"] ?>"
                                         data-src="https://www.youtube.com/embed/<?php echo $data["video_id"] ?>" 
-                                        class="src active">
+                                        class="src ">
                                             <img src = "https://i.ytimg.com/vi/<?php echo $data["video_id"] ?>/maxresdefault.jpg">
                                             <div class ="title">
                                                 Bài <?php echo $data["lessons_id"] ?>: <?php echo $data["title"] ?>
@@ -236,8 +236,32 @@ if (!isset($_SESSION['USER_NAME']))
                 mysqli_close($connect);
                 ?>
             </div>
+        
+
+        <div class ="container">
+            <div class = "row">
+                <div class =  "col-lg-8 col-md-8">
+                    <div class="comment" data-spy="scroll" data-target="#myScrollspy" data-offset="10">
+                        <div class ="item">
+                            <p class ="user_name">User_name</p>
+                            Comment nè
+                        </div><hr> 
+                        <div class ="item">
+                            <p class ="user_name">User_name 2</p>
+                            Comment nè 2   
+                        </div>
+                    </div>
+                </div>
+                <div class = " col-lg-4 col-md-4 input">
+                    <form  action="" method="get">
+                        <input type="text" name="comment" placeholder="Nhập comment"/>
+                        <input type="submit" name="ok" value="Gửi" /> 
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
+
 
     <footer>
         <div class="container">
@@ -281,11 +305,11 @@ if (!isset($_SESSION['USER_NAME']))
                 var idx = $(this).attr('idx');
                 var des = $(this).attr('des');
                 var caption = "Bài " + idx + ": " + title
-                $('.src').removeClass('active');
+
                 $("#youtube").attr('src', src += '?autoplay=1');
                 $("#vidtitle").html(caption);
                 $("#description").html(des);
-                $(this).addClass('active');
+
             });
             });
         </script>
