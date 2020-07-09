@@ -49,7 +49,7 @@ CREATE TABLE `images` (
 CREATE TABLE `lessons` (
   `lessons_id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL,
-  `video` text COLLATE utf8_unicode_ci NOT NULL,
+  `video_id` text COLLATE utf8_unicode_ci NOT NULL,
   `title` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -68,7 +68,7 @@ CREATE TABLE `user` (
   `GENDER` tinyint(1) NOT NULL,
   `EMAIL` varchar(60) NOT NULL,
   `FULL_NAME` varchar(60) NOT NULL,
-  `TRIAL_DATE` date NOT NULL,
+  `TRIAL_DATE` date NOT NULL DEFAULT '0000-00-00',
   `IDGROUP` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -141,6 +141,11 @@ COMMIT;
 
 CREATE TABLE `insight`.`SCHEDULE` ( `SCHEDULE_ID` INT NOT NULL AUTO_INCREMENT , `SCHEDULE_INFO` VARCHAR(200) NOT NULL , `SCHEDULE_GADGETS` VARCHAR(50) NOT NULL , `SCHEDULE_DATE` DATE NOT NULL , `SCHEDULE_AREA` VARCHAR(20) NOT NULL , `SCHEDULE_FREE` BOOLEAN NOT NULL DEFAULT TRUE, PRIMARY KEY (`SCHEDULE_ID`)) ENGINE = InnoDB;  
 
+CREATE TABLE `comment` (
+  `name` text NOT NULL,
+  `comment` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 INSERT INTO `course` (`course_id`, `name`, `teacher`, `thumb`, `description`) VALUES
 (1, 'CHO NGƯỜI MỚI BẮT ĐẦU', 'Nguyễn Văn A', 'https://eus-www.sway-cdn.com/s/5qXqnkeuHtzDFomD/images/cJ0CtSFtqsGN-Y?quality=480&allowAnimation=true&embeddedHost=true', 'Description'),
 (2, 'PHAN LOẠI MÁY ẢNH', 'Nguyễn Văn B', 'https://phongvu.vn/cong-nghe/wp-content/uploads/2019/09/may-co-demifilm.png', 'Description'),
@@ -178,4 +183,7 @@ INSERT INTO `bundle` (`ID`, `BUNDLE_NAME`, `BUNDLE_DES`, `BUNDLE_PRICE`) VALUES
 (3, 'NÂNG CAO', 'Đi các chuyến dã ngoại thực hành các kỹ năng đã học<br> Nhận được feedback và hướng dẫn trong suốt khoá học', '$400');
 
 
-
+INSERT INTO `user` (`USER_ID`, `USER_NAME`, `PASSWORD`, `GENDER`, `EMAIL`, `FULL_NAME`, `TRIAL_DATE`, `IDGROUP`) VALUES
+(1, 'k', '8ce4b16b22b58894aa86c421e8759df3', 1, 'k@k', 'k', '0000-00-00', 0),
+(2, 'a', '0cc175b9c0f1b6a831c399e269772661', 1, 'a@a', 'a', '0000-00-00', 0),
+(3, 'b', '92eb5ffee6ae2fec3ad71c777531578f', 1, 'b@b', 'b', '2020-07-09', 0);
