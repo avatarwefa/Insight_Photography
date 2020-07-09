@@ -39,6 +39,7 @@
         };
         </script>
     </head>
+
     
     <body class="">
       <!-- Pushy Menu -->
@@ -74,7 +75,6 @@
                         <h1><small>Nơi khơi nguồn cho đam mê</small> 
                         <strong>Nhiếp ảnh</strong></h1>
                         <p>Đây là nơi bạn có thể biến những khoảnh khắc thành những bước ảnh đắc giá cho hành trình của bạn.</p>
-                        <p><a class="btn btn-primary btn-lg" role="button">Tìm hiểu thêm</a> <a target="_blank" href="#Features" class="btn btn-lg btn-danger" role="button">Chúng tôi trên Youtube</a></p>
                     </div>
                 </div>
             </div>
@@ -82,80 +82,104 @@
         
         <section id="news" class="blog wow fadeInUp" data-wow-delay="300ms">
             <div class="container">
-                <div class="row">
-                        <?php 
-                            $course_id = -1;
-                            if (isset($_GET["course_id"])) {
-                                $id = intval($_GET['course_id']);
-                            }
-
+                <div class="row center">
+                <form class ="search" action="course.php" method="get">
+                    <input type="text" name="search" placeholder="Nhập từ khóa cần tìm"/>
+                    <input type="submit" name="ok" value="Tìm kiếm" /> 
+                </form>
+                
+                <?php 
+                    if (isset($_REQUEST['ok'])) {
+                        $search = addslashes($_GET['search']);
+                        if (empty($search)) {
+                            echo "Yeu cau nhap du lieu vao o trong";
+                        } 
+                        else {
                             $connect = mysqli_connect('localhost', 'root', '', 'insight');
                             mysqli_set_charset($connect, "UTF8");
                             if (!$connect) {
                                 die('kết nối không thành công ' . mysqli_connect_error());
                             }
-                            
-                            $sql = "SELECT * FROM COURSE WHERE course_id=$id";
-                           
-                            if ($result = mysqli_query($connect, $sql)) {
-                                $row = mysqli_fetch_array($result) 
-                        ?>
-                        <h4><?php echo $row['name'];?> - Giảng viên: <?php echo $row['teacher'];?><h4>
-                        <div class = "col-lg-8 col-md-8">                      
-                        <?php
-                            } else
-                                //Hiện thông báo khi không thành công
-                                echo 'Không thành công. Lỗi' . mysqli_error($connect);
-                            //ngắt kết nối
-                            mysqli_close($connect);
-                        ?>
-
-                        <?php 
-                            $connect = mysqli_connect('localhost', 'root', '', 'insight');
-                            mysqli_set_charset($connect, "UTF8");
-                            if (!$connect) {
-                                die('kết nối không thành công ' . mysqli_connect_error());
+                            $query = "select * from course where name like '%$search%'";
+                            if ($result = mysqli_query($connect, $query)) {
+                                $num = mysqli_num_rows($result);
+                                $i =1;
+                                if ($num > 0 && $search != "") 
+                                {
+                                    echo "$num ket qua tra ve voi tu khoa <b>$search</b><br><br>";
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                    //hiển thị dữ liệu
+                                    // echo 'Dữ liệu thứ ' . $i . ' gồm: ' . $row['id'] . '-' . $row['title'] . '-' . $row['content'] . '<br/>';
+                            ?>
+                                    <div class="col-lg-4 col-md-6">
+                                        <article class=" border-0 rounded-0 mb-4">
+                                            <img src=' <?php echo $row['thumb'] ?> ' alt="" class="img-responsive">
+                                            <div class="mt-3 px-4 py-3 ">
+                                            <a href="lessons.php?course_id=<?php echo $row['course_id']?>">
+                                                    <h3><?php echo $row['name'] ?> </h3> 
+                                                </a>
+                                                <h2 class="mb-3 font-secondary"><?php echo $row['teacher'] ?></h2>
+                                                <p><?php echo $row['description'] ?></p>
+                                            </div>
+                                        </article>
+                                    </div>
+                                   
+                            <?php
+                                        $i++;
+                                    
+                                    }
+                                } else
+                                    //Hiện thông báo khi không thành công
+                                    echo 'Không thành công. Lỗi' . mysqli_error($connect);
+                                //ngắt kết nối
+                                mysqli_close($connect);
                             }
-                            $i = 1;
-                            //câu truy vấn
-                            $sql = "SELECT * FROM LESSONS WHERE course_id = $id";
-                            $current_vid = $sql;
-                            //kiểm tra
-                            if ($result1 = mysqli_query($connect, $sql)) {
-                                $first_vid = mysqli_fetch_array($result1);        
+                        }
+                    }
+                   
+                    else {
+                        $connect = mysqli_connect('localhost', 'root', '', 'insight');
+                        mysqli_set_charset($connect, "UTF8");
+                        //Kiểm tra kết nối
+                        if (!$connect) {
+                            die('kết nối không thành công ' . mysqli_connect_error());
+                        }
+                        //khởi tạo biến $i để đếm;
+                        $i = 1;
+                        //câu truy vấn
+                        $sql = "SELECT * FROM COURSE";
+  
+                        //kiểm tra
+                        if ($result = mysqli_query($connect, $sql)) {
+                            while ($row = mysqli_fetch_array($result)) {
+                                //hiển thị dữ liệu
+                                // echo 'Dữ liệu thứ ' . $i . ' gồm: ' . $row['id'] . '-' . $row['title'] . '-' . $row['content'] . '<br/>';
                         ?>
-                                <div class = "col-lg-7 col-md-7 vidarea">
-                                    <iframe width="560" height="315" 
-                                        id ="youtube"
-                                        src=<?php echo $first_vid["video"] ?>
-                                        frameborder="0" 
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                                        allowfullscreen>
-                                    </iframe>
+                                <div class="col-lg-4 col-md-6" style="margin-top:30px;">
+                                    <article class=" border-0 rounded-0 mb-4">
+                                        <img src=' <?php echo $row['thumb'] ?> ' alt="" class="img-responsive">
+                                        <div class="mt-3 px-4 py-3 ">
+                                            <a href="lessons.php?course_id=<?php echo $row['course_id']?>">
+                                                <h3><?php echo $row['name'] ?> </h3> 
+                                            </a>
+                                            <h2 class="mb-3 font-secondary"><?php echo $row['teacher'] ?></h2>
+                                            <p><?php echo $row['description'] ?></p>
+                                        </div>
+                                    </article>
                                 </div>
-                            </div>
-                            <div class = "col-lg-4 col-md-4">
-                                <a href = "javascript:void(0)" data-src=<?php echo $first_vid["video"] ?> class ="src">
-                                <?php echo $first_vid["title"] ?> </a><br>
-                        
-
-                        <?php
-                                while ($data = mysqli_fetch_array($result1)) {
-                        ?>
-                            <a href = "javascript:void(0)" data-src="<?php echo $data["video"] ?>" class ="src">
-                            <?php echo $data["title"] ?> </a><br>
-                        <?php
-                                    $i++;
-                                } 
-                        ?>
-                            </div>
-                        <?php  
-                            } 
-                            else
-                                echo 'Không thành công. Lỗi' . mysqli_error($connect);
-                            mysqli_close($connect);
-                        ?>   
-                </div>                        
+                               
+                    <?php
+                                $i++;
+                            
+                            }
+                        } else
+                            //Hiện thông báo khi không thành công
+                            echo 'Không thành công. Lỗi' . mysqli_error($connect);
+                        //ngắt kết nối
+                        mysqli_close($connect);
+                    }
+                ?>
+                </div>
             </div>
         </section>
         
@@ -187,14 +211,6 @@
         <script src="assets/js/wow.min.js"></script>
         <script src="assets/js/scripts.js"></script>
         <script src="assets/js/odometer.js"></script>
-        <script type = "text/javascript">
-            $(document).ready(function(){
-                $(document).on('click','.src',function(){
-                    var src=$(this).attr('data-src');
-                    $("#youtube").attr('src',src+='?autoplay=1');
-                });
-            });
-        </script>
         
 
     </body>
