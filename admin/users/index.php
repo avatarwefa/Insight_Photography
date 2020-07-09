@@ -32,7 +32,8 @@
       }  
       fetch_data();  
       $(document).on('click', '#btn_add', function(){  
-           var USER_NAME = $('#USER_NAME').text();  
+           var USER_NAME = $('#USER_NAME').text();
+           var PASSWORD = $('#PASSWORD').text();
            var EMAIL = $('#EMAIL').text(); 
            var FULL_NAME = $('#FULL_NAME').text();  
            var TRIAL_DATE = $('#TRIAL_DATE').text();
@@ -51,7 +52,7 @@
            $.ajax({  
                 url:"insert.php",  
                 method:"POST",  
-                data:{USER_NAME:USER_NAME, EMAIL:EMAIL,FULL_NAME:FULL_NAME,TRIAL_DATE:IDGROUP,IDGROUP:IDGROUP},  
+                data:{USER_NAME:USER_NAME, EMAIL:EMAIL,FULL_NAME:FULL_NAME,TRIAL_DATE:TRIAL_DATE,IDGROUP:IDGROUP, PASSWORD:PASSWORD},  
                 dataType:"text",  
                 success:function(data)  
                 {  
@@ -74,8 +75,8 @@
       }  
       $(document).on('blur', '.USER_NAME', function(){  
            var USER_ID = $(this).data("id1");  
-           var Username = $(this).text();  
-           edit_data(USER_ID, USER_ID, "USER_ID");  
+           var USER_NAME = $(this).text();  
+           edit_data(USER_ID, USER_NAME, "USER_NAME");  
       });      
       $(document).on('blur', '.EMAIL', function(){  
            var USER_ID = $(this).data("id2");  
@@ -96,11 +97,16 @@
 
       $(document).on('blur', '.IDGROUP', function(){  
            var USER_ID = $(this).data("id5");  
-           var IDGROUP = $(this).text();  
-           edit_data(id,IDGROUP, "IDGROUP");  
+           var IDGROUP = $(this).text(); 
+           edit_data(USER_ID,IDGROUP, "IDGROUP");  
+      });  
+      $(document).on('blur', '.PASSWORD', function(){  
+           var USER_ID = $(this).data("id6");  
+           var PASSWORD = $(this).text();  
+           edit_data(USER_ID,PASSWORD, "PASSWORD");  
       });  
       $(document).on('click', '.btn_delete', function(){  
-           var USER_ID=$(this).data("id6");  
+           var USER_ID = $(this).data("id7");  
            if(confirm("Bạn muốn xoá hàng này?"))  
            {  
                 $.ajax({  
