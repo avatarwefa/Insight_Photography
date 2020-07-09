@@ -1,5 +1,5 @@
 /*------------------------------------*\
-  COMMONS CLASSES
+	COMMONS CLASSES
 \*------------------------------------*/
 
 h1, h2, h3, h4, h5, h6
@@ -49,7 +49,7 @@ span.x4:before, i.x4:before
 }
 
 /*------------------------------------*\
-  HEADER
+	HEADER
 \*------------------------------------*/
 
 header .container-fluid
@@ -105,7 +105,7 @@ header .container-fluid
 
 
 /*------------------------------------*\
-  SECTIONS
+	SECTIONS
 \*------------------------------------*/
 
 .number .container-fluid
@@ -182,11 +182,11 @@ header .container-fluid
 }
 
 /*------------------------------------*\
-  VIDEO
+	VIDEO
 \*------------------------------------*/
 
 /*------------------------------------*\
-  FOOTER
+	FOOTER
 \*------------------------------------*/
 
 footer
@@ -371,16 +371,16 @@ h1.arrow { font-size: 26px; text-transform: uppercase; color: #353535; letter-sp
 ADMIN
 */
 .tablebg {
-  margin: 0;
-  background: linear-gradient(45deg, rgba(36, 50, 59, 1), #4e4c4c);
-  font-family: sans-serif;
+	margin: 0;
+	background: linear-gradient(45deg, rgba(36, 50, 59, 1), #4e4c4c);
+	font-family: sans-serif;
   font-weight: 100;
 }
 
 .tablebg .con {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
   transform: translate(-50%, -50%);
   
 }
@@ -388,31 +388,31 @@ ADMIN
 .tablebg table {
   width: 100%;
   table-layout:fixed;
-  border-collapse: collapse;
-  overflow: hidden;
+	border-collapse: collapse;
+	overflow: hidden;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
   text-align: center;
 }
 
 .tablebg th,
 td  {
-  padding: 15px;
-  background-color: rgba(255,255,255,0.2);
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
   color: #fff;
 }
 
 .tablebg th {
-  text-align: center;
+	text-align: center;
 }
 
-.tablebg thead  th {
-    background-color: rgba(36, 50, 59, 1);
-  }
+.tablebg thead	th {
+		background-color: rgba(36, 50, 59, 1);
+	}
 
 .tablebg tbody tr:hover {
-  background-color: rgba(255,255,255,0.3);  
-  }
-.tablebg tbody  td:hover:before {
+  background-color: rgba(255,255,255,0.3);	
+	}
+.tablebg tbody	td:hover:before {
   position: relative;
   content: "";
   position: absolute;
