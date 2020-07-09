@@ -196,13 +196,13 @@ else
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Tên Đăng Nhập</label>
-                                    <input class="input--style-4" type="text" pattern="[a-zA-Z0-9]+" required name="txtUsername">
+                                    <input class="input--style-4" type="text" pattern="[a-zA-Z0-9]+" minlength="5" maxlength="30" required name="txtUsername">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Mật khẩu</label>
-                                    <input class="input--style-4" type="Password" name="txtRetypePassword">
+                                    <input class="input--style-4" type="Password" minlength="5" maxlength="30" name="txtRetypePassword">
                                 </div>
                             </div>
                         </div>
@@ -226,7 +226,7 @@ else
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Nhập lại mật khẩu</label>
-                                    <input class="input--style-4" type="Password" name="txtPassword">
+                                    <input class="input--style-4" minlength="5" maxlength="30" type="Password" name="txtPassword">
                                 </div>
                             </div>
                         </div>
@@ -234,13 +234,13 @@ else
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Email</label>
-                                    <input class="input--style-4" type="email" name="txtEmail">
+                                    <input class="input--style-4" minlength="10" maxlength="30" type="email" name="txtEmail">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Tên đầy đủ</label>
-                                    <input class="input--style-4" type="text" name="txtFullName">
+                                    <input class="input--style-4" minlength="5" maxlength="30" type="text" name="txtFullName">
                                 </div>
                             </div>
                         </div>
