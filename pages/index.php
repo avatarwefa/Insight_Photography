@@ -231,7 +231,11 @@ if (isset($_POST["btnLogin"]))
                         <div class="input-group" >
                             <label class="label" ></label>
 
-                            <a href="#" type="button" id="txtSignUp" >Chưa tạo tài khoản? Đăng Kí tại đây!</a>
+                            <a href="#" type="button" id="txtSignUp" >Chưa tạo tài khoản? Đăng Kí tại đây!</a><br><br>
+                            <a href="../ResetPassword/forgotPassword.php" type="button" id="txtSignUp" >Quên mật khẩu?</a>
+
+
+
 
 
 
