@@ -187,7 +187,6 @@ if (!isset($_SESSION['USER_NAME']))
                                             
                                     </a>
                                 </div>
-                                <hr>
                                 
                                 <?php
                                 while ($data = mysqli_fetch_array($result1)) {
@@ -207,7 +206,6 @@ if (!isset($_SESSION['USER_NAME']))
                                             
                                     </a>
                                 </div>
-                                <hr>
                               
 
                                 <?php

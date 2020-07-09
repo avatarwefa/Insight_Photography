@@ -514,7 +514,7 @@ SEARCH
 .playlist .item{
   width: 100%;
   padding: 5px;
-
+  box-shadow: 1px 1px 1px rgb(199, 198, 198);
   display:flex;
   align-items:center;
 
