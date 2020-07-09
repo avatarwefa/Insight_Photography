@@ -1,6 +1,6 @@
 <?php  
  $connect = mysqli_connect("localhost", "root", "", "insight"); 
- echo "<script type='text/javascript'>alert('Get here!');</script>";
+ // echo "<script type='text/javascript'>alert('Get here!');</script>";
  $output = '';  
  $sql = "SELECT * FROM SCHEDULE ORDER BY SCHEDULE_ID DESC";  
  $result = mysqli_query($connect, $sql);  

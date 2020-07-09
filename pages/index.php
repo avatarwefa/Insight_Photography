@@ -16,48 +16,48 @@ if (isset($_POST["btnSignup"]))
     $date = date("Y-m-d ");
     $idgroup = $_POST["idgroup"];
     $qr1 = 
-          "
-            select * from USER
-            where USER.USER_NAME = '$username' or USER.EMAIL = '$email'
-            
-          ";
-  $result = mysqli_query($conn,$qr1);
+    "
+    select * from USER
+    where USER.USER_NAME = '$username' or USER.EMAIL = '$email'
+
+    ";
+    $result = mysqli_query($conn,$qr1);
     
-if ($username == "" || $password == "" || $fullname == "" || $gender == "" || $idgroup == "")
-{
-    $flag = 1;
-    echo "<script type='text/javascript'>alert('Kiểm tra các cột nhập liệu!');</script>";
-}
-if ( $password != $retypepassword  && $flag == 0 )
-{
-    $flag = 1;
-    echo "<script type='text/javascript'>alert('Mật khẩu bạn nhập cần trùng khớp nhau');</script>";
-}
-if (mysqli_num_rows($result) > 0 && $flag == 0)
-{
-        $flag = 1;
-    echo "<script type='text/javascript'>alert('Tên đăng nhập đã có người sở hữu! Hãy thay bằng tên khác!');</script>";
-}
-if ($flag == 0)
-{
-    $password = md5($password);
-    if ($idgroup == 0)
+    if ($username == "" || $password == "" || $fullname == "" || $gender == "" || $idgroup == "")
     {
-        #$date = null;
-        $date = '0000-00-00';
+        $flag = 1;
+        echo "<script type='text/javascript'>alert('Kiểm tra các cột nhập liệu!');</script>";
     }
+    if ( $password != $retypepassword  && $flag == 0 )
+    {
+        $flag = 1;
+        echo "<script type='text/javascript'>alert('Mật khẩu bạn nhập cần trùng khớp nhau');</script>";
+    }
+    if (mysqli_num_rows($result) > 0 && $flag == 0)
+    {
+        $flag = 1;
+        echo "<script type='text/javascript'>alert('Tên đăng nhập đã có người sở hữu! Hãy thay bằng tên khác!');</script>";
+    }
+    if ($flag == 0)
+    {
+        $password = md5($password);
+        if ($idgroup == 0)
+        {
+        #$date = null;
+            $date = '0000-00-00';
+        }
 
 
-  $qr = "
-  INSERT INTO USER VALUES
-  (null,'$username','$password','$gender','$email' ,'$fullname', '$date' ,'$idgroup')
-  ";
-  mysqli_query($conn,$qr);
+        $qr = "
+        INSERT INTO USER VALUES
+        (null,'$username','$password','$gender','$email' ,'$fullname', '$date' ,'$idgroup')
+        ";
+        mysqli_query($conn,$qr);
 
-    echo "<script type='text/javascript'>alert('Đăng kí thành công! Bạn có thể đăng nhập ngay bây giờ.);</script>";
-    echo($qr);
+        echo "<script type='text/javascript'>alert('Đăng kí thành công! Bạn có thể đăng nhập ngay bây giờ.);</script>";
+        echo($qr);
 
-}
+    }
 
 }
 
@@ -73,16 +73,22 @@ if (isset($_POST["btnLogin"]))
   $user = $_POST["txtUser"];
   $pass = $_POST["txtPass"];
 
-$qr1 = 
+  $qr1 = 
   "
-    select * from USER
-    where USER.USER_NAME = '$user'
-    
+  select * from USER
+  where USER.USER_NAME = '$user'
+
   ";
   $result = mysqli_query($conn,$qr1);
   $row_user = mysqli_fetch_array($result);
   if ($user == $row_user['USER_NAME'] && md5($pass) == $row_user['PASSWORD'])
   {
+    if($row_user['IDGROUP'] == 5){
+        $_SESSION["IDGROUP"] = $row_user['IDGROUP'];
+        echo "<script type='text/javascript'>alert('Chào mừng bạn đến với trang quản trị Admin!');
+        window.location.href='../admin/index.php';</script>";
+    }
+
     $_SESSION["IDGROUP"] = $row_user['IDGROUP'];
     $user_id = $row_user['USER_ID'];
     $_SESSION["USER_ID"] = $row_user['USER_ID'];
@@ -93,42 +99,42 @@ $qr1 =
         if(date('Y-m-d') > $time)
         {
             $qr1 = "
-                UPDATE USER SET USER.IDGROUP=0 WHERE USER.USER_ID = $user_id
+            UPDATE USER SET USER.IDGROUP=0 WHERE USER.USER_ID = $user_id
             ";
             $_SESSION["IDGROUP"] = 0;
             $result = mysqli_query($conn,$qr1);
             echo "<script type='text/javascript'>alert('Dùng thử đã hết hạn!');</script>";
         }
     }
-    
+
     $_SESSION["USER_NAME"] = $row_user['USER_NAME'];
     $fullname = $row_user['FULL_NAME'];
     $_SESSION["PASSWORD"] = $row_user['PASSWORD'];
     $_SESSION["FULL_NAME"] = $row_user['FULL_NAME'];
-    
+
     $date = $_SESSION["TRIAL_DATE"];
     $_SESSION["EMAIL"] =$row_user['EMAIL'];
-    
+
     $_SESSION["GENDER"] =$row_user['GENDER'];
-        echo "<script> alert('Xin chào quay trở lại, $fullname ');
-window.setTimeout(function(){
+    echo "<script> alert('Xin chào quay trở lại, $fullname ');
+    window.setTimeout(function(){
 
 
-    window.location.href = '../index.php';
+        window.location.href = '../index.php';
 
-}, 1000);
-</script>";
+        }, 1000);
+        </script>";
+
+    }
+
+
+    else
+    {
+      echo "<script type='text/javascript'>alert('Đăng Nhập Thất Bại, Thử Lại Sau');</script>";
 
   }
-    
-
-else
-{
-  echo "<script type='text/javascript'>alert('Đăng Nhập Thất Bại, Thử Lại Sau');</script>";
 
 }
-}
-
 ?>
 
 
@@ -164,27 +170,27 @@ else
     <link href="css/main.css" rel="stylesheet" media="all">
     
     <!-- Include this for Ajax use-->
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-<script language="javascript" type="text/javascript">
-    $(document).ready(function()
-{
-    $('#txtSignIn').click(function()
-    {
-        $('.card-body').load('login/login.php');
-    })
-    
-});
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function()
+        {
+            $('#txtSignIn').click(function()
+            {
+                $('.card-body').load('login/login.php');
+            })
+
+        });
 
     </script>
 </head>
 
 <body>
     <div class="hello" id="hello">
-        
+
     </div>
     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
@@ -207,7 +213,7 @@ else
                             </div>
                         </div>
                         <div class="row row-space">
-                            
+
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Giới Tính</label>
@@ -263,10 +269,10 @@ else
                         <div class="input-group" >
                             <label class="label" ></label>
                             
-                           <a href="#" type="button" id="txtSignIn" >Đã có tài khoản? Đăng nhập tại đây!</a>
-                          
-                           
-                           
+                            <a href="#" type="button" id="txtSignIn" >Đã có tài khoản? Đăng nhập tại đây!</a>
+
+
+
                         </div>
                     </form>
                 </div>

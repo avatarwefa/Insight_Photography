@@ -4,7 +4,7 @@
  $output = '';  
  $sql = "SELECT * FROM lessons ORDER BY lessons_id";  
  $result = mysqli_query($connect, $sql);  
-
+ 
  $output .= '  
       <div class="table-responsive">  
            <table class="table table-bordered">  

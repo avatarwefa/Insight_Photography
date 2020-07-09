@@ -18,6 +18,21 @@ ob_start();
 session_start();
 ?>
 
+<?php 
+if(isset($_POST["btnSignout"]))
+{
+  unset($_SESSION["USER_ID"]);
+  unset($_SESSION["USER_NAME"]);
+  unset($_SESSION["PASSWORD"]);
+  unset($_SESSION["FULL_NAME"]);
+  unset($_SESSION["TRIAL_DATE"]);
+  unset($_SESSION["EMAIL"]);
+  unset($_SESSION["IDGROUP"]);
+  header("location:../pages/index.php");
+}
+    //header("Location:index.php")
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -58,79 +73,84 @@ session_start();
               TRANG QUẢN TRỊ
 
             </a>
+            <h3 class="text-danger">Xin chào <?php echo $_SESSION["FULL_NAME"] ?></h3>
 
           </div>
 
           <div class="right-div">
-            <a href="#" class="btn btn-info pull-right">LOG ME OUT</a>
-          </div>
-        </div>
-      </div>
-      <!-- LOGO HEADER END-->
-      <section class="menu-section">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="navbar-collapse collapse ">
-                <ul id="menu-top" class="nav navbar-nav navbar-right">
-                  <li><a href="index.php" >TRANG CHỦ</a></li>
-                  <li><a href="">QUẢN LÝ THÀNH VIÊN</a></li>
-                  <li><a href="quanLyKhoaHoc.php" >QUẢN LÝ KHÓA HỌC </a></li>
-                  <li><a href="quanLyBaiHoc.php" >QUẢN LÝ BÀI HỌC </a></li>
-                  <li><a href="newsletter.php">NEWSLETTER</a></li>
-                  <li><a href="quanLyLichTrinh.php">QUẢN LÝ LỊCH HỌC</a></li>
-                  <!-- <li><a href="./listQuangCao.php">QUẢN lÝ QUẢNG CÁO</a></li> -->
-                </ul>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-      <!-- MENU SECTION END-->
-      <div class="content-wrapper">
-        <div class="container">  
-          <br />  
-          <br />  
-          <br />  
-          <div class="table-responsive">  
-           <h3 align="center">QUẢN LÝ THÀNH VIÊN INSIGHT</h3><br />
-           <div id="live_data"></div>                 
-         </div>  
-       </div>  
+            <form method="post">
+              <button class="btn btn-primary" name="btnSignout">
+               LOG ME OUT
+             </button>
+           </form>
+         </div>
+       </div>
      </div>
-     <!-- CONTENT-WRAPPER SECTION END-->
-     <section class="footer-section">
+     <!-- LOGO HEADER END-->
+     <section class="menu-section">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-           &copy; INSIGHT | 2019-2020 
-         </div>
+            <div class="navbar-collapse collapse ">
+              <ul id="menu-top" class="nav navbar-nav navbar-right">
+                <li><a href="index.php" >TRANG CHỦ</a></li>
+                <li><a href="">QUẢN LÝ THÀNH VIÊN</a></li>
+                <li><a href="quanLyKhoaHoc.php" >QUẢN LÝ KHÓA HỌC </a></li>
+                <li><a href="quanLyBaiHoc.php" >QUẢN LÝ BÀI HỌC </a></li>
+                <li><a href="newsletter.php">NEWSLETTER</a></li>
+                <li><a href="quanLyLichTrinh.php">QUẢN LÝ LỊCH HỌC</a></li>
+                <!-- <li><a href="./listQuangCao.php">QUẢN lÝ QUẢNG CÁO</a></li> -->
+              </ul>
+            </div>
+          </div>
 
+        </div>
+      </div>
+    </section>
+    <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+      <div class="container">  
+        <br />  
+        <br />  
+        <br />  
+        <div class="table-responsive">  
+         <h3 align="center">QUẢN LÝ THÀNH VIÊN INSIGHT</h3><br />
+         <div id="live_data"></div>                 
+       </div>  
+     </div>  
+   </div>
+   <!-- CONTENT-WRAPPER SECTION END-->
+   <section class="footer-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+         &copy; INSIGHT | 2019-2020 
        </div>
+
      </div>
-   </section>
+   </div>
+ </section>
  <script>  
- $(document).ready(function(){  
-      function fetch_data()  
-      {  
-           $.ajax({  
-                url:"users/select.php",  
-                method:"POST",  
-                success:function(data){  
-                     $('#live_data').html(data);  
-                }  
-           });  
-      }  
-      fetch_data();  
-      $(document).on('click', '#btn_add', function(){  
-           var USER_NAME = $('#USER_NAME').text();
-           var PASSWORD = $('#PASSWORD').text();
-           var EMAIL = $('#EMAIL').text(); 
-           var FULL_NAME = $('#FULL_NAME').text();  
-           var TRIAL_DATE = $('#TRIAL_DATE').text();
-           var IDGROUP = $('#IDGROUP').text(); 
-            
+   $(document).ready(function(){  
+    function fetch_data()  
+    {  
+     $.ajax({  
+      url:"users/select.php",  
+      method:"POST",  
+      success:function(data){  
+       $('#live_data').html(data);  
+     }  
+   });  
+   }  
+   fetch_data();  
+   $(document).on('click', '#btn_add', function(){  
+     var USER_NAME = $('#USER_NAME').text();
+     var PASSWORD = $('#PASSWORD').text();
+     var EMAIL = $('#EMAIL').text(); 
+     var FULL_NAME = $('#FULL_NAME').text();  
+     var TRIAL_DATE = $('#TRIAL_DATE').text();
+     var IDGROUP = $('#IDGROUP').text(); 
+
            // if(HoTen == '' || HoTen.length <2 || HoTen.length > 40)  
            // {  
            //      alert("Enter name with range of 5-40 characters");  
@@ -142,86 +162,86 @@ session_start();
            //      return false;  
            // }  
            $.ajax({  
-                url:"users/insert.php",  
-                method:"POST",  
-                data:{USER_NAME:USER_NAME, EMAIL:EMAIL,FULL_NAME:FULL_NAME,TRIAL_DATE:TRIAL_DATE,IDGROUP:IDGROUP, PASSWORD:PASSWORD},  
-                dataType:"text",  
-                success:function(data)  
-                {  
-                     alert(data);  
-                     fetch_data();  
-                }  
-           })  
-      });  
-      function edit_data(USER_ID, text, column_name)  
-      {  
-           $.ajax({  
-                url:"users/edit.php",  
-                method:"POST",  
-                data:{USER_ID:USER_ID, text:text, column_name:column_name},  
-                dataType:"text",  
-                success:function(data){  
-                     alert(data);  
-                }  
-           });  
-      }  
-      $(document).on('blur', '.USER_NAME', function(){  
-           var USER_ID = $(this).data("id1");  
-           var USER_NAME = $(this).text();  
-           edit_data(USER_ID, USER_NAME, "USER_NAME");  
-      });      
-      $(document).on('blur', '.EMAIL', function(){  
-           var USER_ID = $(this).data("id2");  
-           var EMAIL = $(this).text();  
-           edit_data(USER_ID, EMAIL, "EMAIL");  
-      });       
-      $(document).on('blur', '.FULL_NAME', function(){  
-           var USER_ID = $(this).data("id3");  
-           var FULL_NAME = $(this).text(); 
-
-           edit_data(USER_ID, FULL_NAME, "FULL_NAME");  
-      });  
-      $(document).on('blur', '.TRIAL_DATE', function(){  
-           var USER_ID = $(this).data("id4");  
-           var TRIAL_DATE = $(this).text();  
-           edit_data(USER_ID, TRIAL_DATE, "TRIAL_DATE");  
-      }); 
-
-      $(document).on('blur', '.IDGROUP', function(){  
-           var USER_ID = $(this).data("id5");  
-           var IDGROUP = $(this).text(); 
-           edit_data(USER_ID,IDGROUP, "IDGROUP");  
-      });  
-      $(document).on('blur', '.PASSWORD', function(){  
-           var USER_ID = $(this).data("id6");  
-           var PASSWORD = $(this).text();  
-           edit_data(USER_ID,PASSWORD, "PASSWORD");  
-      });  
-      $(document).on('click', '.btn_delete', function(){  
-           var USER_ID = $(this).data("id7");  
-           if(confirm("Bạn muốn xoá hàng này?"))  
-           {  
-                $.ajax({  
-                     url:"users/delete.php",  
-                     method:"POST",  
-                     data:{USER_ID:USER_ID},  
-                     dataType:"text",  
-                     success:function(data){  
-                          alert(data);  
-                          fetch_data();  
-                     }  
-                });  
+            url:"users/insert.php",  
+            method:"POST",  
+            data:{USER_NAME:USER_NAME, EMAIL:EMAIL,FULL_NAME:FULL_NAME,TRIAL_DATE:TRIAL_DATE,IDGROUP:IDGROUP, PASSWORD:PASSWORD},  
+            dataType:"text",  
+            success:function(data)  
+            {  
+             // alert(data);  
+             fetch_data();  
            }  
-      });  
+         })  
+         });  
+   function edit_data(USER_ID, text, column_name)  
+   {  
+     $.ajax({  
+      url:"users/edit.php",  
+      method:"POST",  
+      data:{USER_ID:USER_ID, text:text, column_name:column_name},  
+      dataType:"text",  
+      success:function(data){  
+       // alert(data);  
+     }  
+   });  
+   }  
+   $(document).on('blur', '.USER_NAME', function(){  
+     var USER_ID = $(this).data("id1");  
+     var USER_NAME = $(this).text();  
+     edit_data(USER_ID, USER_NAME, "USER_NAME");  
+   });      
+   $(document).on('blur', '.EMAIL', function(){  
+     var USER_ID = $(this).data("id2");  
+     var EMAIL = $(this).text();  
+     edit_data(USER_ID, EMAIL, "EMAIL");  
+   });       
+   $(document).on('blur', '.FULL_NAME', function(){  
+     var USER_ID = $(this).data("id3");  
+     var FULL_NAME = $(this).text(); 
+
+     edit_data(USER_ID, FULL_NAME, "FULL_NAME");  
+   });  
+   $(document).on('blur', '.TRIAL_DATE', function(){  
+     var USER_ID = $(this).data("id4");  
+     var TRIAL_DATE = $(this).text();  
+     edit_data(USER_ID, TRIAL_DATE, "TRIAL_DATE");  
+   }); 
+
+   $(document).on('blur', '.IDGROUP', function(){  
+     var USER_ID = $(this).data("id5");  
+     var IDGROUP = $(this).text(); 
+     edit_data(USER_ID,IDGROUP, "IDGROUP");  
+   });  
+   $(document).on('blur', '.PASSWORD', function(){  
+     var USER_ID = $(this).data("id6");  
+     var PASSWORD = $(this).text();  
+     edit_data(USER_ID,PASSWORD, "PASSWORD");  
+   });  
+   $(document).on('click', '.btn_delete', function(){  
+     var USER_ID = $(this).data("id7");  
+     if(confirm("Bạn muốn xoá hàng này?"))  
+     {  
+      $.ajax({  
+       url:"users/delete.php",  
+       method:"POST",  
+       data:{USER_ID:USER_ID},  
+       dataType:"text",  
+       success:function(data){  
+        // alert(data);  
+        fetch_data();  
+      }  
+    });  
+    }  
+  });  
  });  
- </script>
- <!-- FOOTER SECTION END-->
- <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
- <!-- CORE JQUERY  -->
- <!-- <script src="assets/js/jquery-1.10.2.js"></script> -->
- <!-- BOOTSTRAP SCRIPTS  -->
- <!-- <script src="assets/js/bootstrap.js"></script> -->
- <!-- CUSTOM SCRIPTS  -->
- <!-- <script src="assets/js/custom.js"></script> -->
+</script>
+<!-- FOOTER SECTION END-->
+<!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+<!-- CORE JQUERY  -->
+<!-- <script src="assets/js/jquery-1.10.2.js"></script> -->
+<!-- BOOTSTRAP SCRIPTS  -->
+<!-- <script src="assets/js/bootstrap.js"></script> -->
+<!-- CUSTOM SCRIPTS  -->
+<!-- <script src="assets/js/custom.js"></script> -->
 </body>
 </html>

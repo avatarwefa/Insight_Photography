@@ -17,6 +17,20 @@ $conn = MyConnect();
 ob_start();
 session_start();
 ?>
+<?php 
+if(isset($_POST["btnSignout"]))
+{
+  unset($_SESSION["USER_ID"]);
+  unset($_SESSION["USER_NAME"]);
+  unset($_SESSION["PASSWORD"]);
+  unset($_SESSION["FULL_NAME"]);
+  unset($_SESSION["TRIAL_DATE"]);
+  unset($_SESSION["EMAIL"]);
+  unset($_SESSION["IDGROUP"]);
+  header("location:../pages/index.php");
+}
+    //header("Location:index.php")
+?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!DOCTYPE html>
@@ -58,150 +72,155 @@ session_start();
               TRANG QUẢN TRỊ
 
             </a>
+            <h3 class="text-danger">Xin chào <?php echo $_SESSION["FULL_NAME"] ?></h3>
 
           </div>
 
           <div class="right-div">
-            <a href="#" class="btn btn-info pull-right">LOG ME OUT</a>
-          </div>
-        </div>
-      </div>
-      <!-- LOGO HEADER END-->
-      <section class="menu-section">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="navbar-collapse collapse ">
-                <ul id="menu-top" class="nav navbar-nav navbar-right">
-                  <li><a href="index.php" >TRANG CHỦ</a></li>
-                  <li><a href="quanLyThanhVien.php">QUẢN LÝ THÀNH VIÊN</a></li>
-                  <li><a href="" >QUẢN LÝ KHÓA HỌC </a></li>
-                  <li><a href="quanLyBaiHoc.php" >QUẢN LÝ BÀI HỌC </a></li>
-                  <li><a href="newsletter.php">NEWSLETTER</a></li>
-                  <li><a href="quanLyLichTrinh.php" >QUẢN LÝ LỊCH HỌC </a></li>
-
-                  <!-- <li><a href="./listQuangCao.php">QUẢN lÝ QUẢNG CÁO</a></li> -->
-                </ul>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-      <!-- MENU SECTION END-->
-      <div class="content-wrapper">
-        <div class="container">  
-          <br />  
-          <br />  
-          <br />  
-          <div class="table-responsive">  
-           <h3 align="center">QUẢN LÝ KHÓA HỌC INSIGHT</h3><br />
-           <div id="live_data"></div>                 
-         </div>  
-       </div>  
+            <form method="post">
+              <button class="btn btn-primary" name="btnSignout">
+               LOG ME OUT
+             </button>
+           </form>
+         </div>
+       </div>
      </div>
-     <!-- CONTENT-WRAPPER SECTION END-->
-     <section class="footer-section">
+     <!-- LOGO HEADER END-->
+     <section class="menu-section">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-           &copy; INSIGHT | 2019-2020 
-         </div>
+            <div class="navbar-collapse collapse ">
+              <ul id="menu-top" class="nav navbar-nav navbar-right">
+                <li><a href="index.php" >TRANG CHỦ</a></li>
+                <li><a href="quanLyThanhVien.php">QUẢN LÝ THÀNH VIÊN</a></li>
+                <li><a href="" >QUẢN LÝ KHÓA HỌC </a></li>
+                <li><a href="quanLyBaiHoc.php" >QUẢN LÝ BÀI HỌC </a></li>
+                <li><a href="newsletter.php">NEWSLETTER</a></li>
+                <li><a href="quanLyLichTrinh.php" >QUẢN LÝ LỊCH HỌC </a></li>
 
+                <!-- <li><a href="./listQuangCao.php">QUẢN lÝ QUẢNG CÁO</a></li> -->
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+      <div class="container">  
+        <br />  
+        <br />  
+        <br />  
+        <div class="table-responsive">  
+         <h3 align="center">QUẢN LÝ KHÓA HỌC INSIGHT</h3><br />
+         <div id="live_data"></div>                 
+       </div>  
+     </div>  
+   </div>
+   <!-- CONTENT-WRAPPER SECTION END-->
+   <section class="footer-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+         &copy; INSIGHT | 2019-2020 
        </div>
+
      </div>
-   </section>
-   <script>  
-     $(document).ready(function(){  
-      function fetch_data()  
+   </div>
+ </section>
+ <script>  
+   $(document).ready(function(){  
+    function fetch_data()  
+    {  
+     $.ajax({  
+      url:"courses/select.php",  
+      method:"POST",  
+      success:function(data){  
+       $('#live_data').html(data);  
+     }  
+   });  
+   }  
+   fetch_data();  
+   $(document).on('click', '#btn_add', function(){  
+     var NAME = $('#NAME').text();
+     var TEACHER = $('#TEACHER').text();
+     var THUMB = $('#THUMB').text(); 
+     var DESCRIPTION = $('#DESCRIPTION').text();  
+
+     $.ajax({  
+      url:"courses/insert.php",  
+      method:"POST",  
+      data:{NAME:NAME, TEACHER:TEACHER,THUMB:THUMB,DESCRIPTION:DESCRIPTION},  
+      dataType:"text",  
+      success:function(data)  
       {  
-       $.ajax({  
-        url:"courses/select.php",  
-        method:"POST",  
-        success:function(data){  
-         $('#live_data').html(data);  
-       }  
-     });  
+       // alert(data);  
+       fetch_data();  
      }  
-     fetch_data();  
-     $(document).on('click', '#btn_add', function(){  
-       var NAME = $('#NAME').text();
-       var TEACHER = $('#TEACHER').text();
-       var THUMB = $('#THUMB').text(); 
-       var DESCRIPTION = $('#DESCRIPTION').text();  
-
-       $.ajax({  
-        url:"courses/insert.php",  
-        method:"POST",  
-        data:{NAME:NAME, TEACHER:TEACHER,THUMB:THUMB,DESCRIPTION:DESCRIPTION},  
-        dataType:"text",  
-        success:function(data)  
-        {  
-         alert(data);  
-         fetch_data();  
-       }  
-     })  
-     });  
-     function edit_data(course_id, text, column_name)  
-     {  
-       $.ajax({  
-        url:"courses/edit.php",  
-        method:"POST",  
-        data:{course_id:course_id, text:text, column_name:column_name},  
-        dataType:"text",  
-        success:function(data){  
-         alert(data);  
-       }  
-     });  
+   })  
+   });  
+   function edit_data(course_id, text, column_name)  
+   {  
+     $.ajax({  
+      url:"courses/edit.php",  
+      method:"POST",  
+      data:{course_id:course_id, text:text, column_name:column_name},  
+      dataType:"text",  
+      success:function(data){  
+       // alert(data);  
      }  
-     $(document).on('blur', '.name', function(){  
-       var course_id = $(this).data("id1");  
-       var NAME = $(this).text();  
-       edit_data(course_id, NAME, "name");  
-     });      
-     $(document).on('blur', '.teacher', function(){  
-       var course_id = $(this).data("id2");  
-       var TEACHER = $(this).text();  
-       edit_data(course_id, TEACHER, "teacher");  
-     });       
-     $(document).on('blur', '.thumb', function(){  
-       var course_id = $(this).data("id3");  
-       var THUMB = $(this).text(); 
+   });  
+   }  
+   $(document).on('blur', '.name', function(){  
+     var course_id = $(this).data("id1");  
+     var NAME = $(this).text();  
+     edit_data(course_id, NAME, "name");  
+   });      
+   $(document).on('blur', '.teacher', function(){  
+     var course_id = $(this).data("id2");  
+     var TEACHER = $(this).text();  
+     edit_data(course_id, TEACHER, "teacher");  
+   });       
+   $(document).on('blur', '.thumb', function(){  
+     var course_id = $(this).data("id3");  
+     var THUMB = $(this).text(); 
 
-       edit_data(course_id, THUMB, "thumb");  
-     });  
-     $(document).on('blur', '.description', function(){  
-       var course_id = $(this).data("id4");  
-       var DESCRIPTION = $(this).text();  
-       edit_data(course_id, DESCRIPTION, "description");  
-     }); 
+     edit_data(course_id, THUMB, "thumb");  
+   });  
+   $(document).on('blur', '.description', function(){  
+     var course_id = $(this).data("id4");  
+     var DESCRIPTION = $(this).text();  
+     edit_data(course_id, DESCRIPTION, "description");  
+   }); 
 
-    
-     $(document).on('click', '.btn_delete', function(){  
-      var course_id = $(this).data("id7");  
-       if(confirm("Bạn muốn xoá hàng này?"))  
-       {  
-        $.ajax({  
-         url:"courses/delete.php",  
-         method:"POST",  
-         data:{course_id:course_id},  
-         dataType:"text",  
-         success:function(data){  
-          alert(data);  
-          fetch_data();  
-        }  
-      });  
+
+   $(document).on('click', '.btn_delete', function(){  
+    var course_id = $(this).data("id7");  
+    if(confirm("Bạn muốn xoá hàng này?"))  
+    {  
+      $.ajax({  
+       url:"courses/delete.php",  
+       method:"POST",  
+       data:{course_id:course_id},  
+       dataType:"text",  
+       success:function(data){  
+        // alert(data);  
+        fetch_data();  
       }  
     });  
-   });  
- </script>
- <!-- FOOTER SECTION END-->
- <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
- <!-- CORE JQUERY  -->
- <!-- <script src="assets/js/jquery-1.10.2.js"></script> -->
- <!-- BOOTSTRAP SCRIPTS  -->
- <!-- <script src="assets/js/bootstrap.js"></script> -->
- <!-- CUSTOM SCRIPTS  -->
- <!-- <script src="assets/js/custom.js"></script> -->
+    }  
+  });  
+ });  
+</script>
+<!-- FOOTER SECTION END-->
+<!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+<!-- CORE JQUERY  -->
+<!-- <script src="assets/js/jquery-1.10.2.js"></script> -->
+<!-- BOOTSTRAP SCRIPTS  -->
+<!-- <script src="assets/js/bootstrap.js"></script> -->
+<!-- CUSTOM SCRIPTS  -->
+<!-- <script src="assets/js/custom.js"></script> -->
 </body>
 </html>

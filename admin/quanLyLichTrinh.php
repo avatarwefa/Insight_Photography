@@ -17,6 +17,20 @@ $conn = MyConnect();
 ob_start();
 session_start();
 ?>
+<?php 
+if(isset($_POST["btnSignout"]))
+{
+    unset($_SESSION["USER_ID"]);
+    unset($_SESSION["USER_NAME"]);
+    unset($_SESSION["PASSWORD"]);
+    unset($_SESSION["FULL_NAME"]);
+    unset($_SESSION["TRIAL_DATE"]);
+    unset($_SESSION["EMAIL"]);
+    unset($_SESSION["IDGROUP"]);
+    header("location:../pages/index.php");
+}
+    //header("Location:index.php")
+?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!DOCTYPE html>
@@ -58,11 +72,17 @@ session_start();
               TRANG QUẢN TRỊ
 
             </a>
+            <h3 class="text-danger">Xin chào <?php echo $_SESSION["FULL_NAME"] ?></h3>
 
           </div>
 
           <div class="right-div">
-            <a href="#" class="btn btn-info pull-right">LOG ME OUT</a>
+            <form method="post">
+              <button class="btn btn-primary" name="btnSignout">
+               LOG ME OUT
+              </button>
+            </form>
+
           </div>
         </div>
       </div>
@@ -110,26 +130,26 @@ session_start();
        </div>
      </div>
    </section>
- <script>  
- $(document).ready(function(){  
+   <script>  
+     $(document).ready(function(){  
       function fetch_data()  
       {  
-           $.ajax({  
-                url:"schedule/select.php",  
-                method:"POST",  
-                success:function(data){  
-                     $('#live_data').html(data);  
-                }  
-           });  
-      }  
-      fetch_data();  
-      $(document).on('click', '#btn_add', function(){  
-           var SCHEDULE_INFO = $('#SCHEDULE_INFO').text();
-           var SCHEDULE_GADGETS = $('#SCHEDULE_GADGETS').text(); 
-           var SCHEDULE_DATE = $('#SCHEDULE_DATE').text();  
-           var SCHEDULE_AREA = $('#SCHEDULE_AREA').text();
-           var SCHEDULE_FREE = $('#SCHEDULE_FREE').text(); 
-            
+       $.ajax({  
+        url:"schedule/select.php",  
+        method:"POST",  
+        success:function(data){  
+         $('#live_data').html(data);  
+       }  
+     });  
+     }  
+     fetch_data();  
+     $(document).on('click', '#btn_add', function(){  
+       var SCHEDULE_INFO = $('#SCHEDULE_INFO').text();
+       var SCHEDULE_GADGETS = $('#SCHEDULE_GADGETS').text(); 
+       var SCHEDULE_DATE = $('#SCHEDULE_DATE').text();  
+       var SCHEDULE_AREA = $('#SCHEDULE_AREA').text();
+       var SCHEDULE_FREE = $('#SCHEDULE_FREE').text(); 
+
            // if(HoTen == '' || HoTen.length <2 || HoTen.length > 40)  
            // {  
            //      alert("Enter name with range of 5-40 characters");  
@@ -141,73 +161,73 @@ session_start();
            //      return false;  
            // }  
            $.ajax({  
-                url:"schedule/insert.php",  
-                method:"POST",  
-                data:{SCHEDULE_INFO:SCHEDULE_INFO, SCHEDULE_GADGETS:SCHEDULE_GADGETS,SCHEDULE_DATE:SCHEDULE_DATE,SCHEDULE_AREA:SCHEDULE_AREA,SCHEDULE_FREE:SCHEDULE_FREE},  
-                dataType:"text",  
-                success:function(data)  
-                {  
-                     alert(data);  
-                     fetch_data();  
-                }  
-           })  
-      });  
-      function edit_data(SCHEDULE_ID, text, column_name)  
-      {  
-           $.ajax({  
-                url:"schedule/edit.php",  
-                method:"POST",  
-                data:{SCHEDULE_ID:SCHEDULE_ID, text:text, column_name:column_name},  
-                dataType:"text",  
-                success:function(data){  
-                     alert(data);  
-                }  
-           });  
-      }  
-      $(document).on('blur', '.SCHEDULE_INFO', function(){  
-           var SCHEDULE_ID = $(this).data("id1");  
-           var SCHEDULE_INFO = $(this).text();  
-           edit_data(SCHEDULE_ID, SCHEDULE_INFO, "SCHEDULE_INFO");  
-      });      
-      $(document).on('blur', '.SCHEDULE_GADGETS', function(){  
-           var SCHEDULE_ID = $(this).data("id2");  
-           var SCHEDULE_GADGETS = $(this).text();  
-           edit_data(SCHEDULE_ID, SCHEDULE_GADGETS, "SCHEDULE_GADGETS");  
-      });       
-      $(document).on('blur', '.SCHEDULE_DATE', function(){  
-           var SCHEDULE_ID = $(this).data("id3");  
-           var SCHEDULE_DATE = $(this).text(); 
-
-           edit_data(SCHEDULE_ID, SCHEDULE_DATE, "SCHEDULE_DATE");  
-      });  
-      $(document).on('blur', '.SCHEDULE_AREA', function(){  
-           var SCHEDULE_ID = $(this).data("id4");  
-           var SCHEDULE_AREA = $(this).text();  
-           edit_data(SCHEDULE_ID, SCHEDULE_AREA, "SCHEDULE_AREA");  
-      }); 
-
-      $(document).on('blur', '.SCHEDULE_FREE', function(){  
-           var SCHEDULE_ID = $(this).data("id5");  
-           var SCHEDULE_FREE = $(this).text(); 
-           edit_data(SCHEDULE_ID,SCHEDULE_FREE, "SCHEDULE_FREE");  
-      });  
-      $(document).on('click', '.btn_delete', function(){  
-           var SCHEDULE_ID = $(this).data("id7");  
-           if(confirm("Bạn muốn xoá hàng này?"))  
-           {  
-                $.ajax({  
-                     url:"schedule/delete.php",  
-                     method:"POST",  
-                     data:{SCHEDULE_ID:SCHEDULE_ID},  
-                     dataType:"text",  
-                     success:function(data){  
-                          alert(data);  
-                          fetch_data();  
-                     }  
-                });  
+            url:"schedule/insert.php",  
+            method:"POST",  
+            data:{SCHEDULE_INFO:SCHEDULE_INFO, SCHEDULE_GADGETS:SCHEDULE_GADGETS,SCHEDULE_DATE:SCHEDULE_DATE,SCHEDULE_AREA:SCHEDULE_AREA,SCHEDULE_FREE:SCHEDULE_FREE},  
+            dataType:"text",  
+            success:function(data)  
+            {  
+             // alert(data);  
+             fetch_data();  
            }  
+         })  
+         });  
+     function edit_data(SCHEDULE_ID, text, column_name)  
+     {  
+       $.ajax({  
+        url:"schedule/edit.php",  
+        method:"POST",  
+        data:{SCHEDULE_ID:SCHEDULE_ID, text:text, column_name:column_name},  
+        dataType:"text",  
+        success:function(data){  
+         // alert(data);  
+       }  
+     });  
+     }  
+     $(document).on('blur', '.SCHEDULE_INFO', function(){  
+       var SCHEDULE_ID = $(this).data("id1");  
+       var SCHEDULE_INFO = $(this).text();  
+       edit_data(SCHEDULE_ID, SCHEDULE_INFO, "SCHEDULE_INFO");  
+     });      
+     $(document).on('blur', '.SCHEDULE_GADGETS', function(){  
+       var SCHEDULE_ID = $(this).data("id2");  
+       var SCHEDULE_GADGETS = $(this).text();  
+       edit_data(SCHEDULE_ID, SCHEDULE_GADGETS, "SCHEDULE_GADGETS");  
+     });       
+     $(document).on('blur', '.SCHEDULE_DATE', function(){  
+       var SCHEDULE_ID = $(this).data("id3");  
+       var SCHEDULE_DATE = $(this).text(); 
+
+       edit_data(SCHEDULE_ID, SCHEDULE_DATE, "SCHEDULE_DATE");  
+     });  
+     $(document).on('blur', '.SCHEDULE_AREA', function(){  
+       var SCHEDULE_ID = $(this).data("id4");  
+       var SCHEDULE_AREA = $(this).text();  
+       edit_data(SCHEDULE_ID, SCHEDULE_AREA, "SCHEDULE_AREA");  
+     }); 
+
+     $(document).on('blur', '.SCHEDULE_FREE', function(){  
+       var SCHEDULE_ID = $(this).data("id5");  
+       var SCHEDULE_FREE = $(this).text(); 
+       edit_data(SCHEDULE_ID,SCHEDULE_FREE, "SCHEDULE_FREE");  
+     });  
+     $(document).on('click', '.btn_delete', function(){  
+       var SCHEDULE_ID = $(this).data("id7");  
+       if(confirm("Bạn muốn xoá hàng này?"))  
+       {  
+        $.ajax({  
+         url:"schedule/delete.php",  
+         method:"POST",  
+         data:{SCHEDULE_ID:SCHEDULE_ID},  
+         dataType:"text",  
+         success:function(data){  
+          // alert(data);  
+          fetch_data();  
+        }  
       });  
- });  
+      }  
+    });  
+   });  
  </script>
  <!-- FOOTER SECTION END-->
  <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->

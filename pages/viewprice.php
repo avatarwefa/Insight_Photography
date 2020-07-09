@@ -8,9 +8,12 @@ $connect = myConnect();
             $i = 1;
             //câu truy vấn
             $sql = "SELECT * FROM BUNDLE";
+            // var_dump($sql);
             //kiểm tra
             if ($result = mysqli_query($connect, $sql)) {
+                // var_dump($result);
                 while ($row = mysqli_fetch_array($result)) {
+                    // var_dump($row);
                     //hiển thị dữ liệu
                     // echo 'Dữ liệu thứ ' . $i . ' gồm: ' . $row['id'] . '-' . $row['title'] . '-' . $row['content'] . '<br/>';
                     echo '<div class="pricing-plan">
@@ -26,13 +29,15 @@ $connect = myConnect();
                     }
                     else if ($row['ID']==2)
                     {
-                        echo "<a href='Trial2.php?nangcao=true' class='pricing-button'>Dùng thử</a>
+                        echo "<a href='Trial2.php?chuyennghiep=true' class='pricing-button'>Dùng thử</a>
+                        
                         </div>";
 
                     }
                     else if($row['ID']==3)
                     {
-                        echo "<a href='Trial2.php?chuyennghiep=true' class='pricing-button'>Dùng thử</a>
+                        echo "<a href='Trial2.php?nangcao=true' class='pricing-button'>Dùng thử</a>
+
                         </div>";
 
                     }

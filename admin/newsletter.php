@@ -1,3 +1,37 @@
+
+<?php
+//Chuyển hướng k bị lỗi
+// ob_start();
+// session_start();
+	// echo $_SESSION["idGroup"];
+	// if(!isset($_SESSION["idUser"]) || $_SESSION["idGroup"] != 1){
+	// 	header("location:../index.php");
+	// }
+	//ket noi csdl
+// require "../lib/dbCon.php";
+// require "../lib/quantri.php";
+
+
+require "lib/dbCon.php";
+// require "lib/trangchu.php";
+$conn = MyConnect();
+ob_start();
+session_start();
+?>
+<?php 
+if(isset($_POST["btnSignout"]))
+{
+	unset($_SESSION["USER_ID"]);
+	unset($_SESSION["USER_NAME"]);
+	unset($_SESSION["PASSWORD"]);
+	unset($_SESSION["FULL_NAME"]);
+	unset($_SESSION["TRIAL_DATE"]);
+	unset($_SESSION["EMAIL"]);
+	unset($_SESSION["IDGROUP"]);
+	header("location:../pages/index.php");
+}
+    //header("Location:index.php")
+?>
 <style>
 
 
@@ -135,14 +169,14 @@
 
 	});
 </script>
- -->
+-->
 
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <![endif]-->
@@ -173,10 +207,15 @@
 				<a class="navbar-brand" href="">
 					TRANG QUẢN TRỊ
 				</a>
+				<h3 class="text-danger">Xin chào <?php echo $_SESSION["FULL_NAME"] ?></h3>
 			</div>
 
 			<div class="right-div">
-				<a href="#" class="btn btn-info pull-right">LOG ME OUT</a>
+				<form method="post">
+					<button class="btn btn-primary" name="btnSignout">
+						LOG ME OUT
+					</button>
+				</form>
 			</div>
 		</div>
 	</div>
