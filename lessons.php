@@ -1,48 +1,49 @@
 <!DOCTYPE html>
 <html lang="vi">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>Insight Photography's Homepage</title>
-        <!-- Bootstrap -->
-        <link href="bootstrap/css/theme.css" rel="stylesheet">
-        <!-- Custom styles for this template -->
-        <link href="style.css" rel="stylesheet">
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Insight Photography's Homepage</title>
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/theme.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700,100' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Raleway:300,700,900,500' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.7/typicons.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/css/pushy.css">
-        <link rel="stylesheet" href="assets/css/masonry.css">
-        <link rel="stylesheet" href="assets/css/animate.css">
-        <link rel="stylesheet" href="assets/css/magnific-popup.css">
-        <link rel="stylesheet" href="assets/css/odometer-theme-default.css">
-        
-        <!-- Hook -->
-        
-        
-        
-        <script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700,100' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:300,700,900,500' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.7/typicons.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/pushy.css">
+    <link rel="stylesheet" href="assets/css/masonry.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/odometer-theme-default.css">
+
+    <!-- Hook -->
+
+
+
+    <script>
         window.odometerOptions = {
-          selector: '.odometer',
-          format: '(,ddd)', //group số, và số chữ số sau digit
-          duration: 13000, // thời gian đợi của javascript
-          theme: 'default'
+            selector: '.odometer',
+            format: '(,ddd)', //group số, và số chữ số sau digit
+            duration: 13000, // thời gian đợi của javascript
+            theme: 'default'
         };
-        </script>
-    </head>
-    
-    <body class="">
-      <!-- Pushy Menu -->
-      <nav class="pushy pushy-left">
+    </script>
+</head>
+
+<body class="">
+    <!-- Pushy Menu -->
+    <nav class="pushy pushy-left">
         <ul class="list-unstyled">
             <li><a href="pages/index.php">Đăng Kí/ Đăng Nhập</a></li>
             <li><a href="#news">Chúng tôi là ai</a></li>
@@ -55,62 +56,62 @@
             <li><a href="#contact">Liên hệ!</a></li>
             <li><a href="https://www.youtube.com/watch?v=dFz5E1rZqR4" target="_blank">Buổi học thử</a></li>
         </ul>
-      </nav>
+    </nav>
 
-      <!-- Site Overlay -->
-      <div class="site-overlay"></div>
+    <!-- Site Overlay -->
+    <div class="site-overlay"></div>
 
-        <header id="home">
-            <div class="container-fluid">
-                <!-- Thay đổi hình ảnh tại style.css to the class header .container-fluid [approximately row 50] -->
-                <div class="container">
-                    <div class="row">
-                        
-                        <div class="col-xs-2 text-center">
-                          <div class="menu-btn"><span class="hamburger">&#9776;</span></div>
-                        </div>
-                    </div>
-                    <div class="jumbotron">
-                        <h1><small>Nơi khơi nguồn cho đam mê</small> 
-                        <strong>Nhiếp ảnh</strong></h1>
-                        <p>Đây là nơi bạn có thể biến những khoảnh khắc thành những bước ảnh đắc giá cho hành trình của bạn.</p>
-                        <p><a class="btn btn-primary btn-lg" role="button">Tìm hiểu thêm</a> <a target="_blank" href="#Features" class="btn btn-lg btn-danger" role="button">Chúng tôi trên Youtube</a></p>
-                    </div>
-                </div>
-            </div>
-        </header>
-        
-        <section id="news" class="blog wow fadeInUp" data-wow-delay="300ms">
+    <header id="home">
+        <div class="container-fluid">
+            <!-- Thay đổi hình ảnh tại style.css to the class header .container-fluid [approximately row 50] -->
             <div class="container">
                 <div class="row">
-                        <?php 
-                            $course_id = -1;
-                            if (isset($_GET["course_id"])) {
-                                $id = intval($_GET['course_id']);
-                            }
 
-                            $connect = mysqli_connect('localhost', 'root', '', 'insight');
-                            mysqli_set_charset($connect, "UTF8");
-                            if (!$connect) {
-                                die('kết nối không thành công ' . mysqli_connect_error());
-                            }
-                            
-                            $sql = "SELECT * FROM COURSE WHERE course_id=$id";
-                           
-                            if ($result = mysqli_query($connect, $sql)) {
-                                $row = mysqli_fetch_array($result) 
-                        ?>
-                        <h4><?php echo $row['name'];?> - Giảng viên: <?php echo $row['teacher'];?><h4>
-                        <div class = "col-lg-8 col-md-8">                      
-                        <?php
-                            } else
-                                //Hiện thông báo khi không thành công
-                                echo 'Không thành công. Lỗi' . mysqli_error($connect);
-                            //ngắt kết nối
-                            mysqli_close($connect);
-                        ?>
+                    <div class="col-xs-2 text-center">
+                        <div class="menu-btn"><span class="hamburger">&#9776;</span></div>
+                    </div>
+                </div>
+                <div class="jumbotron">
+                    <h1><small>Nơi khơi nguồn cho đam mê</small>
+                        <strong>Nhiếp ảnh</strong></h1>
+                    <p>Đây là nơi bạn có thể biến những khoảnh khắc thành những bước ảnh đắc giá cho hành trình của bạn.</p>
+                    <p><a class="btn btn-primary btn-lg" role="button">Tìm hiểu thêm</a> <a target="_blank" href="#Features" class="btn btn-lg btn-danger" role="button">Chúng tôi trên Youtube</a></p>
+                </div>
+            </div>
+        </div>
+    </header>
 
-                        <?php 
+    <section id="news" class="blog wow fadeInUp" data-wow-delay="300ms">
+        <div class="container">
+            <div class="row">
+                <?php
+                $course_id = -1;
+                if (isset($_GET["course_id"])) {
+                    $id = intval($_GET['course_id']);
+                }
+
+                $connect = mysqli_connect('localhost', 'root', '', 'insight');
+                mysqli_set_charset($connect, "UTF8");
+                if (!$connect) {
+                    die('kết nối không thành công ' . mysqli_connect_error());
+                }
+
+                $sql = "SELECT * FROM COURSE WHERE course_id=$id";
+
+                if ($result = mysqli_query($connect, $sql)) {
+                    $row = mysqli_fetch_array($result)
+                ?>
+                    <h4><?php echo $row['name']; ?> - Giảng viên: <?php echo $row['teacher']; ?><h4>
+                            <div class="col-lg-8 col-md-8">
+                            <?php
+                        } else
+                            //Hiện thông báo khi không thành công
+                            echo 'Không thành công. Lỗi' . mysqli_error($connect);
+                        //ngắt kết nối
+                        mysqli_close($connect);
+                            ?>
+
+                            <?php
                             $connect = mysqli_connect('localhost', 'root', '', 'insight');
                             mysqli_set_charset($connect, "UTF8");
                             if (!$connect) {
@@ -122,82 +123,88 @@
                             $current_vid = $sql;
                             //kiểm tra
                             if ($result1 = mysqli_query($connect, $sql)) {
-                                $first_vid = mysqli_fetch_array($result1);        
-                        ?>
-                                <div class = "col-lg-7 col-md-7 vidarea">
-                                    <iframe width="560" height="315" 
-                                        id ="youtube"
-                                        src=<?php echo $first_vid["video"] ?>
-                                        frameborder="0" 
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                                        allowfullscreen>
+                                $first_vid = mysqli_fetch_array($result1);
+                                
+                            ?>
+                                
+                                    <iframe width="560" height="315" id="youtube" 
+                                    src="https://www.youtube.com/embed/<?php echo $first_vid["video_id"] ?> " 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
                                     </iframe>
-                                </div>
+                                    <h5 id = "vidtitle"><?php echo $first_vid["title"] ?></h5>
+                                
                             </div>
-                            <div class = "col-lg-4 col-md-4">
-                                <a href = "javascript:void(0)" data-src=<?php echo $first_vid["video"] ?> class ="src">
-                                <?php echo $first_vid["title"] ?> </a><br>
-                        
+                            <div class="col-lg-4 col-md-4">
+                                <a href="javascript:void(0)"
+                                title = "<?php echo $first_vid["title"] ?>" 
+                                data-src="https://www.youtube.com/embed/<?php echo $first_vid["video_id"] ?> " class="src">
+                                    <?php echo $first_vid["title"]?> </a><br>
 
-                        <?php
+
+                                <?php
                                 while ($data = mysqli_fetch_array($result1)) {
-                        ?>
-                            <a href = "javascript:void(0)" data-src="<?php echo $data["video"] ?>" class ="src">
-                            <?php echo $data["title"] ?> </a><br>
-                        <?php
+                                ?>
+                                    <a href="javascript:void(0)" 
+                                    title = "<?php echo $data["title"] ?>" 
+                                    data-src="https://www.youtube.com/embed/<?php echo $data["video_id"] ?>" 
+                                    class="src">
+                                        <?php echo $data["title"] ?></a><br>
+                                <?php
                                     $i++;
-                                } 
-                        ?>
+                                }
+                                ?>
                             </div>
-                        <?php  
-                            } 
-                            else
+                        <?php
+                            } else
                                 echo 'Không thành công. Lỗi' . mysqli_error($connect);
                             mysqli_close($connect);
-                        ?>   
-                </div>                        
+                        ?>
             </div>
-        </section>
-        
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h3>Kết nối qua mạng xã hội</h3>
-                        <p>© 2019 Insight Photography. Được thế kế bởi Từ Ngọc Huy <a target="_blank" href="http://www.facebook.com/NgocHuyTuVEVO">InsightPhotography.com</a></p>
-                    </div>
-                    <div class="col-md-4">
-                        <p class="text-right social"><i class="typcn typcn-social-facebook-circular"></i><i class="typcn typcn-social-twitter-circular"></i><i class="typcn typcn-social-tumbler-circular"></i><i class="typcn typcn-social-github-circular"></i><i class="typcn typcn-social-dribbble-circular"></i></p>
-                    </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>Kết nối qua mạng xã hội</h3>
+                    <p>© 2019 Insight Photography. Được thế kế bởi Từ Ngọc Huy <a target="_blank" href="http://www.facebook.com/NgocHuyTuVEVO">InsightPhotography.com</a></p>
+                </div>
+                <div class="col-md-4">
+                    <p class="text-right social"><i class="typcn typcn-social-facebook-circular"></i><i class="typcn typcn-social-twitter-circular"></i><i class="typcn typcn-social-tumbler-circular"></i><i class="typcn typcn-social-github-circular"></i><i class="typcn typcn-social-dribbble-circular"></i></p>
                 </div>
             </div>
-        </footer>
-        <!-- Bootstrap core JavaScript
+        </div>
+    </footer>
+    <!-- Bootstrap core JavaScript
     ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap-scrollspy.js"></script>
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-        <script src="http://masonry.desandro.com/masonry.pkgd.js"></script>
-        <script src="assets/js/masonry.js"></script>
-        <script src="assets/js/pushy.min.js"></script>
-        <script src="assets/js/jquery.magnific-popup.min.js"></script>
-        <script src="assets/js/wow.min.js"></script>
-        <script src="assets/js/scripts.js"></script>
-        <script src="assets/js/odometer.js"></script>
-        <script type = "text/javascript">
-            $(document).ready(function(){
-                $(document).on('click','.src',function(){
-                    var src=$(this).attr('data-src');
-                    $("#youtube").attr('src',src+='?autoplay=1');
-                });
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap-scrollspy.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="http://masonry.desandro.com/masonry.pkgd.js"></script>
+    <script src="assets/js/masonry.js"></script>
+    <script src="assets/js/pushy.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    <script src="assets/js/odometer.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on('click', '.src', function() {
+                var src = $(this).attr('data-src');
+                var title = $(this).attr('title');
+                $("#youtube").attr('src', src += '?autoplay=1');
+                $("#vidtitle").html(title);
             });
-        </script>
-        
+        });
+    </script>
 
-    </body>
+
+</body>
+
 </html>
-
-

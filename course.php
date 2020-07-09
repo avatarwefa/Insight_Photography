@@ -82,8 +82,8 @@
         
         <section id="news" class="blog wow fadeInUp" data-wow-delay="300ms">
             <div class="container">
-                <div class="row center">
-                <form class ="search" action="course.php" method="get">
+                <div class="row ">
+                <form class ="search center" action="course.php" method="get">
                     <input type="text" name="search" placeholder="Nhập từ khóa cần tìm"/>
                     <input type="submit" name="ok" value="Tìm kiếm" /> 
                 </form>
