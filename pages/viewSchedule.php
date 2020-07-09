@@ -15,7 +15,7 @@
                                             die('kết nối không thành công ' . mysqli_connect_error());
                                         }
                                         //khởi tạo biến $i để đếm;
-                                        $now_date = time('Y-m-d');
+                                        $now_date = date("Y-m-d");
                                         //câu truy vấn
                                         $sql = "SELECT * FROM SCHEDULE WHERE SCHEDULE.SCHEDULE_DATE > '$now_date' ORDER BY  SCHEDULE_DATE ASC";
                                         //kiểm tra
