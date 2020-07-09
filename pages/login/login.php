@@ -15,7 +15,7 @@
                             
                                 <div class="input-group">
                                     <label class="label">Username</label>
-                                    <input class="input--style-4" type="text" name="txtUser">
+                                    <input class="input--style-4" type="text" name="txtUser" minlength="5" maxlength="30">
                                 </div>
                             
                             
@@ -24,7 +24,7 @@
                            
                                 <div class="input-group">
                                     <label class="label">Password</label>
-                                    <input class="input--style-4" type="Password" name="txtPass">
+                                    <input class="input--style-4" type="Password" name="txtPass" minlength="5" maxlength="30">
                                 </div>
                             
                         </div>

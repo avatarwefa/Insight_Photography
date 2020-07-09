@@ -93,6 +93,14 @@ session_start();
         </div>
     </header>
 
+    <section id="schedule">
+         <?php if (isset($_SESSION['USER_NAME']))
+                        {
+                        require('pages/viewSchedule.php');
+                        }
+         ?>      
+    </section>
+
     <section id="news" class="blog wow fadeInUp" data-wow-delay="300ms">
         <div class="container">
             <div class="row">
