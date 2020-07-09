@@ -241,14 +241,21 @@ if (!isset($_SESSION['USER_NAME']))
                 <div class =  "col-lg-8 col-md-8">
                     <div class="comment" data-spy="scroll" data-target="#myScrollspy" data-offset="10">
                         <div class ="item">
-                            <p class ="user_name">User_name</p>
+                            <div class ="username">
+                                <img style="margin: 20px;" width="7%" src = "images/user.png">
+                                <b>User_name</b>
+                            </div>
                             Comment nè
                         </div><hr> 
                         <div class ="item">
-                            <p class ="user_name">User_name 2</p>
-                            Comment nè 2   
-                        </div>
+                            <div class ="username">
+                                <img style="margin: 20px;" width="7%" src = "images/user.png">
+                                <b>User_name 2</b>
+                            </div>
+                            Comment 2 nè
+                        </div><hr>
                     </div>
+                    <br>
                 </div>
                 <div class = " col-lg-4 col-md-4 input">
                     <form  action="" method="get">
