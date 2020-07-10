@@ -145,8 +145,8 @@ INSERT INTO `images` (`ID`, `url`) VALUES
 (4, 'https://unsplash.it/600/300?image=505'),
 (5, 'https://unsplash.it/600/300?image=454'),
 (6, 'https://unsplash.it/600/300?image=515'),
-(7, 'https://unsplash.it/600/300?image=451');
-(8, 'https://unsplash.it/600/300?image=524');
+(7, 'https://unsplash.it/600/300?image=451'),
+(8, 'https://unsplash.it/600/300?image=524'),
 (9, 'https://unsplash.it/600/300?image=526');
 
 
