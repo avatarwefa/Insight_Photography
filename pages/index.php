@@ -14,6 +14,7 @@ if (isset($_POST["btnSignup"]))
     $gender = $_POST["gender"];
     $email = $_POST["txtEmail"];
     $date = date("Y-m-d ");
+    $date = date('Y-m-d',strtotime($date. ' + 1 month'));
     $idgroup = $_POST["idgroup"];
     $qr1 = 
     "
@@ -95,7 +96,7 @@ if (isset($_POST["btnLogin"]))
     $_SESSION["TRIAL_DATE"] =$row_user['TRIAL_DATE'];
     if($_SESSION["IDGROUP"]==1 or $_SESSION["IDGROUP"]==2)
     {
-        $time = date('Y-m-d',strtotime($_SESSION["TRIAL_DATE"] . ' + 1 month'));
+        $time = date('Y-m-d',strtotime($_SESSION["TRIAL_DATE"]));
         if(date('Y-m-d') > $time)
         {
             $qr1 = "

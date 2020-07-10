@@ -41,7 +41,7 @@ if(isset($_POST["btnSignout"]))
         <h3><?php echo $_SESSION["FULL_NAME"] ?></h3>
         <?php if ($_SESSION['TRIAL_DATE'] != '0000-00-00') 
         {
-            $time = date('Y-m-d',strtotime($_SESSION["TRIAL_DATE"] . ' + 1 month'));
+            $time = date('Y-m-d',strtotime($_SESSION["TRIAL_DATE"]));
         //$time = DateTime::createFromFormat('Y-m-d', $_SESSION["TRIAL_DATE"]);
         //$time = strtotime($_SESSION["TRIAL_DATE"]);
     // $_SESSION['TRIAL_DATE'] = strtotime($_SESSION['TRIAL_DATE']);
