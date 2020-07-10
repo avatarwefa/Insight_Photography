@@ -289,7 +289,7 @@ session_start();
                             //hiển thị dữ liệu
                             // echo 'Dữ liệu thứ ' . $i . ' gồm: ' . $row['url'] . '-' . $row['title'] . '-' . $row['content'] . '<br/>';
                             //tăng $i lên 1
-                            echo '<div class="item item-width2">
+                            echo '<div class="item item-width1">
                                 <a href=' . $row['url'] . '>
                                   <img src=' . $row['url'] . ' alt="" />
                                 </a>
