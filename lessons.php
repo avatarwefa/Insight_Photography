@@ -187,6 +187,7 @@ if (!isset($_SESSION['USER_NAME']))
                                             
                                     </a>
                                 </div>
+                                <hr>
                                 
                                 <?php
                                 while ($data = mysqli_fetch_array($result1)) {
@@ -206,6 +207,7 @@ if (!isset($_SESSION['USER_NAME']))
                                             
                                     </a>
                                 </div>
+                                <hr>
                               
 
                                 <?php
@@ -238,21 +240,23 @@ if (!isset($_SESSION['USER_NAME']))
 
         <div class ="container">
             <div class = "row">
+            <h5>Phần bình luận</h5>
                 <div class =  "col-lg-8 col-md-8">
+                
                     <div class="comment" data-spy="scroll" data-target="#myScrollspy" data-offset="10">
                         <div class ="item">
                             <div class ="username">
                                 <img style="margin: 20px;" width="7%" src = "images/user.png">
-                                <b>User_name</b>
+                                <b>Meo Meo</b>
                             </div>
-                            Comment nè
+                            Bài này hay quá. Coi mới biết luôn á.
                         </div><hr> 
                         <div class ="item">
                             <div class ="username">
                                 <img style="margin: 20px;" width="7%" src = "images/user.png">
-                                <b>User_name 2</b>
+                                <b>Gâu Gâu</b>
                             </div>
-                            Comment 2 nè
+                            Rất bổ ích, mình sẽ theo dõi thường xuyên.
                         </div><hr>
                     </div>
                     <br>

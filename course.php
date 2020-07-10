@@ -123,7 +123,7 @@ if (!isset($_SESSION['USER_NAME']))
                         $i =1;
                         if ($num > 0 && $search != "") 
                         {
-                            echo "$num ket qua tra ve voi tu khoa <b>$search</b><br><br>";
+                            echo "$num Kết quả trả về cho từ khóa <b>$search</b><br><br>";
                             while ($row = mysqli_fetch_assoc($result)) {
                                     //hiển thị dữ liệu
                                     // echo 'Dữ liệu thứ ' . $i . ' gồm: ' . $row['id'] . '-' . $row['title'] . '-' . $row['content'] . '<br/>';

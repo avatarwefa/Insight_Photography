@@ -229,14 +229,6 @@ h2::after { content: " "; border: solid 2px #3dc9b3; display: block; width: 35px
 .nopadding { padding: 0; }
 .inner { padding-top: 170px; }
 
-
-
-
-
-
-
-
-
 @media (min-width: 960px) {
   .background {
     padding: 0 0 25px;
@@ -514,7 +506,6 @@ SEARCH
 .playlist .item{
   width: 100%;
   padding: 5px;
-  box-shadow: 1px 1px 1px rgb(199, 198, 198);
   display:flex;
   align-items:center;
 
@@ -534,17 +525,12 @@ SEARCH
 }
 
 .playlist .item .title .des{
-  font-size: 10pt;
+  font-size: 8pt;
   font-weight: lighter;
   margin-bottom: 0;
 }
 
-.active{
-  background: linear-gradient(90deg, rgb(192, 192, 196) 0%, rgb(230, 230, 231) 35%, rgb(255, 255, 255) 100%);
-}
-.w100{
-  width: 100%;
-}
+
 
 .comment{
   height:280px;
@@ -565,4 +551,30 @@ SEARCH
 .comment .input{
   width: 100%;
   padding-left: 25px;
+}
+
+@media (max-width: 960px) {
+  .playlist .item .title{
+    font-size: 20pt;
+    margin: 15px;
+  }
+  .row {
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+  
+  .playlist .item .title .des{
+    font-size: 15pt;
+    margin-top: 25px;
+  }
+
+  body{
+    font-size: 18pt;
+  }
+  h5{
+    font-size: 22pt;
+  }
+  h4{
+    font-size: 25pt;
+  }
 }
