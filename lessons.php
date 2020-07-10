@@ -164,7 +164,7 @@ if (!isset($_SESSION['USER_NAME']))
                             <p id="description">
                             <?php echo $data["description"] ?>
                             </p>
-                        
+                            
                                 
                                     
                                 
@@ -178,7 +178,7 @@ if (!isset($_SESSION['USER_NAME']))
                                         des = "<?php echo $data["description"] ?>" 
                                         idx = "<?php echo $data["lessons_id"] ?>"
                                         data-src="https://www.youtube.com/embed/<?php echo $data["video_id"] ?>" 
-                                        class="src active">
+                                        class="src">
                                             <img src = "https://i.ytimg.com/vi/<?php echo $data["video_id"] ?>/maxresdefault.jpg">
                                             <div class ="title">
                                                 Bài <?php echo $data["lessons_id"] ?>: <?php echo $data["title"] ?>
@@ -187,6 +187,7 @@ if (!isset($_SESSION['USER_NAME']))
                                             
                                     </a>
                                 </div>
+                                <hr>
                                 
                                 <?php
                                 while ($data = mysqli_fetch_array($result1)) {
@@ -197,7 +198,7 @@ if (!isset($_SESSION['USER_NAME']))
                                         des = "<?php echo $data["description"] ?>" 
                                         idx = "<?php echo $data["lessons_id"] ?>"
                                         data-src="https://www.youtube.com/embed/<?php echo $data["video_id"] ?>" 
-                                        class="src active">
+                                        class="src ">
                                             <img src = "https://i.ytimg.com/vi/<?php echo $data["video_id"] ?>/maxresdefault.jpg">
                                             <div class ="title">
                                                 Bài <?php echo $data["lessons_id"] ?>: <?php echo $data["title"] ?>
@@ -206,6 +207,7 @@ if (!isset($_SESSION['USER_NAME']))
                                             
                                     </a>
                                 </div>
+                                <hr>
                               
 
                                 <?php
@@ -234,8 +236,70 @@ if (!isset($_SESSION['USER_NAME']))
                 mysqli_close($connect);
                 ?>
             </div>
+        
+            <div class="container">
+            <div class="row">
+                <h5>Phần bình luận</h5>
+                <div class="col-lg-8 col-md-8">
+                    <div class="comment" data-spy="scroll" data-target="#myScrollspy" data-offset="10">
+                        <?php
+                        // include $_SERVER['DOCUMENT_ROOT'] . "Config/setup.php";
+                        myConnect();
+                        // mysqli_select_db("insight");
+                        error_reporting(E_ALL ^ E_NOTICE);
+                        $notify = "";
+                        // $name = $_POST['name'];
+                        $comment = $_POST['comment'];
+                        $submit = $_POST['submit'];
+                        // if (isset($_POST['notify_box'])) {
+                        //     $notify = $_POST['notify_box'];
+                        // }
+                        $dbLink = myConnect();
+                        mysqli_query($dbLink, "SET character_set_client=utf8");
+                        mysqli_query($dbLink, "SET character_set_connection=utf8");
+
+                        if ($submit) {
+                            if ($comment) {
+                                $sql = "INSERT INTO comment (name,comment) VALUES (\"".$_SESSION['USER_NAME']."\",'$comment') ";
+                                $insert = mysqli_query($dbLink, $sql) or die(mysqli_error($dbLink));
+                                
+                            } else {
+                                echo "please fill comment";
+                            }
+                        }
+
+                        $dbLink = mysqli_connect('localhost', 'root', '', 'insight');
+                        mysqli_query($dbLink, "SET character_set_results=utf8");
+                        mb_language('uni');
+                        mb_internal_encoding('UTF-8');
+
+                        $sql = "SELECT * FROM comment";
+                        $getquery = mysqli_query($dbLink, $sql);
+                        if ($getquery = mysqli_query($dbLink, $sql)) {
+                            while ($row = mysqli_fetch_array($getquery)) {
+                                echo "<div class =\"item\">
+    <div class =\"username\">
+        <img style=\"margin: 20px;\" width=\"7%\" src = \"images/user.png\">
+        <b>" . $row['name'] . "</b>
+    </div>
+    " . $row['comment'] . "
+</div><hr> ";
+                            }
+                        }
+                        ?>
+                    </div>
+                    <br>
+                </div>
+                <div class=" col-lg-4 col-md-4 input">
+                    <form action="lessons.php" method="POST">
+                        <input type="text" name="comment" placeholder="Nhập comment" />
+                        <input type="submit" name="submit" value="Gửi" />
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
+
 
     <footer>
         <div class="container">
@@ -279,11 +343,11 @@ if (!isset($_SESSION['USER_NAME']))
                 var idx = $(this).attr('idx');
                 var des = $(this).attr('des');
                 var caption = "Bài " + idx + ": " + title
-                $('.src').removeClass('active');
+
                 $("#youtube").attr('src', src += '?autoplay=1');
                 $("#vidtitle").html(caption);
                 $("#description").html(des);
-                $(this).addClass('active');
+
             });
             });
         </script>
