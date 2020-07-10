@@ -237,34 +237,63 @@ if (!isset($_SESSION['USER_NAME']))
                 ?>
             </div>
         
-
-        <div class ="container">
-            <div class = "row">
-            <h5>Phần bình luận</h5>
-                <div class =  "col-lg-8 col-md-8">
-                
+            <div class="container">
+            <div class="row">
+                <h5>Phần bình luận</h5>
+                <div class="col-lg-8 col-md-8">
                     <div class="comment" data-spy="scroll" data-target="#myScrollspy" data-offset="10">
-                        <div class ="item">
-                            <div class ="username">
-                                <img style="margin: 20px;" width="7%" src = "images/user.png">
-                                <b>Meo Meo</b>
-                            </div>
-                            Bài này hay quá. Coi mới biết luôn á.
-                        </div><hr> 
-                        <div class ="item">
-                            <div class ="username">
-                                <img style="margin: 20px;" width="7%" src = "images/user.png">
-                                <b>Gâu Gâu</b>
-                            </div>
-                            Rất bổ ích, mình sẽ theo dõi thường xuyên.
-                        </div><hr>
+                        <?php
+                        // include $_SERVER['DOCUMENT_ROOT'] . "Config/setup.php";
+                        myConnect();
+                        // mysqli_select_db("insight");
+                        error_reporting(E_ALL ^ E_NOTICE);
+                        $notify = "";
+                        // $name = $_POST['name'];
+                        $comment = $_POST['comment'];
+                        $submit = $_POST['submit'];
+                        // if (isset($_POST['notify_box'])) {
+                        //     $notify = $_POST['notify_box'];
+                        // }
+                        $dbLink = myConnect();
+                        mysqli_query($dbLink, "SET character_set_client=utf8");
+                        mysqli_query($dbLink, "SET character_set_connection=utf8");
+
+                        if ($submit) {
+                            if ($comment) {
+                                $sql = "INSERT INTO comment (name,comment) VALUES (\"".$_SESSION['USER_NAME']."\",'$comment') ";
+                                $insert = mysqli_query($dbLink, $sql) or die(mysqli_error($dbLink));
+                                
+                            } else {
+                                echo "please fill comment";
+                            }
+                        }
+
+                        $dbLink = mysqli_connect('localhost', 'root', '', 'insight');
+                        mysqli_query($dbLink, "SET character_set_results=utf8");
+                        mb_language('uni');
+                        mb_internal_encoding('UTF-8');
+
+                        $sql = "SELECT * FROM comment";
+                        $getquery = mysqli_query($dbLink, $sql);
+                        if ($getquery = mysqli_query($dbLink, $sql)) {
+                            while ($row = mysqli_fetch_array($getquery)) {
+                                echo "<div class =\"item\">
+    <div class =\"username\">
+        <img style=\"margin: 20px;\" width=\"7%\" src = \"images/user.png\">
+        <b>" . $row['name'] . "</b>
+    </div>
+    " . $row['comment'] . "
+</div><hr> ";
+                            }
+                        }
+                        ?>
                     </div>
                     <br>
                 </div>
-                <div class = " col-lg-4 col-md-4 input">
-                    <form  action="" method="get">
-                        <input type="text" name="comment" placeholder="Nhập comment"/>
-                        <input type="submit" name="ok" value="Gửi" /> 
+                <div class=" col-lg-4 col-md-4 input">
+                    <form action="lessons.php" method="POST">
+                        <input type="text" name="comment" placeholder="Nhập comment" />
+                        <input type="submit" name="submit" value="Gửi" />
                     </form>
                 </div>
             </div>
