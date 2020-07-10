@@ -223,6 +223,7 @@ CREATE TABLE `schedule` (
 INSERT INTO `schedule` (`SCHEDULE_ID`, `SCHEDULE_INFO`, `SCHEDULE_GADGETS`, `SCHEDULE_DATE`, `SCHEDULE_AREA`, `SCHEDULE_FREE`) VALUES
 (1, 'Cac thao tac cam may co ban', 'Camera', '2020-07-13', 'CS1', 1),
 (2, 'Chinh sua hinh anh', 'Laptop, Dien Thoai', '2020-07-23', 'CS2', 0);
+INSERT INTO `schedule` (`SCHEDULE_ID`, `SCHEDULE_INFO`, `SCHEDULE_GADGETS`, `SCHEDULE_DATE`, `SCHEDULE_AREA`, `SCHEDULE_FREE`) VALUES (NULL, 'Góc chụp và hệ thống lưới 3x3', 'Điện thoại/ Camera', '2020-08-05', 'LiveStream Youtube', '1'), (NULL, 'Sử dụng Adobe Photoshop và Lightroom để chỉnh màu sắc', 'Máy tính, App', '2020-08-12', 'Cơ sở 2', '1');
 
 -- --------------------------------------------------------
 
