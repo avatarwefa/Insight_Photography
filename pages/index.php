@@ -55,7 +55,7 @@ if (isset($_POST["btnSignup"]))
         mysqli_query($conn,$qr);
 
         echo "<script type='text/javascript'>alert('Đăng kí thành công! Bạn có thể đăng nhập ngay bây giờ.);</script>";
-        echo($qr);
+        // echo($qr);
 
     }
 
